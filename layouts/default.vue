@@ -35,13 +35,16 @@
     </v-main>
 
     <v-navigation-drawer v-model="rightDrawer" right temporary fixed>
-      Popel
+      <Settings />
     </v-navigation-drawer>
   </v-app>
 </template>
 
 <script>
+import Settings from "~/components/settings/index";
+
 export default {
+  components: {Settings},
   data () {
     return {
       drawer: false,

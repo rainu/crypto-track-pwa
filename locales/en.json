@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "language": {
+      "code": "English"
+    }
+  },
+  "navigation": {
+    "home": "All",
+    "settings": "Settings",
+    "backup": "Backup"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": {
+      "dark": "Darkmode"
+    },
+    "language": {
+      "title": "Language"
+    },
+    "others": {
+      "title": "Others"
+    }
+  }
+}

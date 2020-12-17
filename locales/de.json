@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "language": {
+      "code": "Deutsch"
+    }
+  },
+  "navigation": {
+    "home": "Alle",
+    "settings": "Einstellungen",
+    "backup": "Sicherung"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "theme": {
+      "dark": "Nachtmodus"
+    },
+    "language": {
+      "title": "Sprache"
+    },
+    "others":{
+      "title": "Andere"
+    }
+  }
+}
