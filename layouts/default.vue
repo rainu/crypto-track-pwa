@@ -13,7 +13,7 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title v-text="$t(item.title)" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -29,9 +29,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-main>
 
     <v-navigation-drawer v-model="rightDrawer" right temporary fixed>
@@ -50,14 +48,14 @@ export default {
       drawer: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home',
+          title: 'home.title',
           to: '/'
         },
         {
-          icon: 'save',
-          title: 'Backup',
-          to: '/backup'
+          icon: 'mdi-briefcase',
+          title: 'wallet.title',
+          to: '/wallet'
         }
       ],
       rightDrawer: false,

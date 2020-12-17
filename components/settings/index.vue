@@ -10,10 +10,10 @@
               <v-expansion-panel-header>{{$t('settings.others.title')}}</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-row>
-                  <v-col cols="12" sm="4">
+                  <v-col cols="12">
                     <SettingsTheme />
                   </v-col>
-                  <v-col cols="12" sm="4">
+                  <v-col cols="12">
                     <SettingsLanguage />
                   </v-col>
                 </v-row>

@@ -5,9 +5,15 @@
     }
   },
   "navigation": {
-    "home": "All",
+    "home": "Overview",
     "settings": "Settings",
     "backup": "Backup"
+  },
+  "home": {
+    "title": "Overview"
+  },
+  "wallet": {
+    "title": "Wallet"
   },
   "settings": {
     "title": "Settings",

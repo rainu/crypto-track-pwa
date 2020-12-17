@@ -49,6 +49,7 @@ export default {
   plugins: [
     '~/plugins/localStore',
     '~/plugins/i18n',
+    '~/plugins/init',
     '~/plugins/style',
   ],
 
