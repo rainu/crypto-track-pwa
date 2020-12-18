@@ -4,6 +4,14 @@
       "code": "Deutsch"
     }
   },
+  "common": {
+    "datetime": {
+      "format": "DD.MM.YYYY HH:mm:SS"
+    },
+    "date": {
+      "format": "DD.MM.YYYY"
+    }
+  },
   "navigation": {
     "home": "Übersicht",
     "settings": "Einstellungen",
@@ -11,6 +19,74 @@
   },
   "home": {
     "title": "Übersicht"
+  },
+  "transaction": {
+    "title": "Transaktion",
+    "exchange": {
+      "title": "Umtausch",
+      "in": "Kauf",
+      "out": "Verkauf",
+      "fee": "Trading Gebühren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "transfer": {
+      "title": "Transfer",
+      "out": "Transferierter Betrag (Ausgang)",
+      "in": "Transferierter Betrag (Eingang)",
+      "fee": "Transaktions Gebühren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "income": {
+      "title": "Einzahlung",
+      "in": "Einzahlung",
+      "fee": "Transaktions Gebühren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "spent": {
+      "title": "Ausgabe",
+      "out": "Ausgabe",
+      "fee": "Transaktions Gebühren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "donation": {
+      "title": "Spende",
+      "out": "Spende",
+      "fee": "Transaktions Gebühren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "gift": {
+      "title": "Geschenk",
+      "in": "Geschenk",
+      "out": "Geschenk",
+      "fee": "Transaktions Gebühren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "lost": {
+      "title": "Verloren",
+      "out": "Verloren",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    },
+    "stolen": {
+      "title": "Gestohlen",
+      "out": "Gestohlen",
+      "exchangerates": {
+        "title": "Umtausch-Kurse"
+      }
+    }
   },
   "wallet": {
     "title": "Wallet"

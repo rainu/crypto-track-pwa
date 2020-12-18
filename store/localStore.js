@@ -5,7 +5,8 @@ import migrationSteps from './migration/localStore'
 export const STORE_META = 'meta'
 export const STORE_SETTINGS = 'settings'
 export const STORE_CURRENCIES = 'currencies'
-export const STORE_WALLET = 'wallet'
+export const STORE_WALLETS = 'wallets'
+export const STORE_TRANSACTIONS = 'transactions'
 
 export function newLocalStore() {
   const stores = {}
@@ -24,10 +25,15 @@ export function newLocalStore() {
     version: 1.0,
     storeName: STORE_CURRENCIES, // Should be alphanumeric, with underscores.
   })
-  stores[STORE_WALLET] = localforage.createInstance({
+  stores[STORE_WALLETS] = localforage.createInstance({
     name: process.env.appName,
     version: 1.0,
-    storeName: STORE_WALLET, // Should be alphanumeric, with underscores.
+    storeName: STORE_WALLETS, // Should be alphanumeric, with underscores.
+  })
+  stores[STORE_TRANSACTIONS] = localforage.createInstance({
+    name: process.env.appName,
+    version: 1.0,
+    storeName: STORE_TRANSACTIONS, // Should be alphanumeric, with underscores.
   })
 
   return {

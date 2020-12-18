@@ -6,10 +6,10 @@
     <v-divider></v-divider>
 
     <v-list>
-      <v-list-item v-for="currency in wallet.currencies" :key="currency.type + '_' + currency.name">
-        <v-list-item-title>{{currency.name}}</v-list-item-title>
+      <v-list-item v-for="balance of balances" :key="balance.currency.type + '_' + balance.currency.name">
+        <v-list-item-title>{{balance.currency.name}}</v-list-item-title>
         <v-list-item-subtitle class="text-right">
-          <CurrencyAmount :amount="Math.floor(Math.random() * Math.floor(1312))" :currency="currency" />
+          <CurrencyAmount :amount="balance.amount" :currency="balance.currency" />
         </v-list-item-subtitle>
       </v-list-item>
     </v-list>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import CurrencyAmount from "~/components/CurrencyAmount";
+import CurrencyAmount from "@/components/CurrencyAmount";
 export default {
   name: "Wallet",
   components: {CurrencyAmount},
@@ -41,6 +41,9 @@ export default {
       }
 
       return shy;
+    },
+    balances() {
+      return this.$store.getters['wallets/balances'](this.wallet.id);
     },
   }
 }

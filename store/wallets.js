@@ -1,4 +1,5 @@
-import {STORE_WALLET} from "./localStore";
+import {calculateBalances, addToBalance} from '@/functions/balances'
+import {STORE_WALLETS} from "./localStore";
 
 const state = () => ({
   wallets: [],
@@ -33,7 +34,7 @@ const mutations = {
 const actions = {
   init(ctx){
     return Promise.all([
-      this.$localStore.getAll(STORE_WALLET)
+      this.$localStore.getAll(STORE_WALLETS)
         .then(wallets => {
           for(let wallet of wallets){
             ctx.commit('addWallet', wallet)
@@ -43,15 +44,15 @@ const actions = {
   },
   addWallet(ctx, wallet) {
     ctx.commit('addWallet', wallet)
-    return this.$localStore.set(STORE_WALLET, wallet.id, wallet)
+    return this.$localStore.set(STORE_WALLETS, wallet.id, wallet)
   },
   saveWallet(ctx, wallet) {
     ctx.commit('setWallet', wallet)
-    return this.$localStore.set(STORE_WALLET, wallet.id, wallet)
+    return this.$localStore.set(STORE_WALLETS, wallet.id, wallet)
   },
   deleteWallet(ctx, walletId) {
     ctx.commit('deleteWallet', walletId)
-    return this.$localStore.remove(STORE_WALLET, walletId)
+    return this.$localStore.remove(STORE_WALLETS, walletId)
   },
 }
 
@@ -59,6 +60,34 @@ const getters = {
   byId: (state) => (id) => {
     return state.wallets.find(w => w.id === id)
   },
+  transactions: (state, getters, rootState) => (id) => {
+    return rootState.transactions.transactions.filter(tx => {
+      if(tx.involvedWallets.findIndex(wId => wId === id) === -1){
+        //this transaction has nothing to do with the given wallet
+        return false;
+      }
+
+      return true;
+    });
+  },
+  balances: (state, getters, rootState) => (id) => {
+    let wallet = getters.byId(id)
+    let transactions = getters.transactions(id)
+    return calculateBalances(wallet, transactions);
+  },
+  totalBalances: (state, getters, rootState) => () => {
+    let balances = []
+
+    for(let curWallet of state.wallets) {
+      let curWalletBalances = getters.balances(curWallet.id)
+
+      for(let curBalance of curWalletBalances) {
+        addToBalance(balances, curBalance.currency, curBalance.amount)
+      }
+    }
+
+    return balances;
+  }
 }
 
 export default {

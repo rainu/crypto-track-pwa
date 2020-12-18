@@ -4,6 +4,14 @@
       "code": "English"
     }
   },
+  "common": {
+    "datetime": {
+      "format": "YYYY/MM/DD HH:mm:SS"
+    },
+    "date": {
+      "format": "YYYY/MM/DD"
+    }
+  },
   "navigation": {
     "home": "Overview",
     "settings": "Settings",
@@ -11,6 +19,74 @@
   },
   "home": {
     "title": "Overview"
+  },
+  "transaction": {
+    "title": "Transaction",
+    "exchange": {
+      "title": "Exchange",
+      "in": "Buy",
+      "out": "Sell",
+      "fee": "Trading Fee",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "transfer": {
+      "title": "Transfer",
+      "out": "Transferred Amount (Out)",
+      "in": "Transferred Amount (In)",
+      "fee": "Transaction Fee",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "income": {
+      "title": "Income",
+      "in": "Income",
+      "fee": "Transaction Fee",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "spent": {
+      "title": "Spent",
+      "out": "Spent",
+      "fee": "Transaction Fee",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "donation": {
+      "title": "Donation",
+      "out": "Donation",
+      "fee": "Transaction Fee",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "gift": {
+      "title": "Gift",
+      "in": "Gift",
+      "out": "Gift",
+      "fee": "Transaction Fee",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "lost": {
+      "title": "Lost",
+      "out": "Lost",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    },
+    "stolen": {
+      "title": "Stolen",
+      "out": "Stolen",
+      "exchangerates": {
+        "title": "Exchange-Course"
+      }
+    }
   },
   "wallet": {
     "title": "Wallet"

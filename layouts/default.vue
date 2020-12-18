@@ -53,6 +53,11 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-shuffle',
+          title: 'transaction.title',
+          to: '/transaction'
+        },
+        {
           icon: 'mdi-briefcase',
           title: 'wallet.title',
           to: '/wallet'
