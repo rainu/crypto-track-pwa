@@ -31,7 +31,7 @@
       <!-- fees -->
       <template v-if="tx.data.fee.length > 0">
         <v-divider></v-divider>
-        <v-list-item v-for="fee in tx.data.fee" v-if="fee.amount">
+        <v-list-item v-for="(fee, index) in tx.data.fee" v-if="fee.amount" :key="index">
           <v-list-item-subtitle>{{fee.comment}}</v-list-item-subtitle>
           <v-list-item-subtitle class="text-right">
             <CurrencyAmount :amount="fee.amount" :currency="fee.currency" />
