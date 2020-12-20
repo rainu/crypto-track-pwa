@@ -11,6 +11,9 @@
               <v-expansion-panel-content>
                 <v-row>
                   <v-col cols="12">
+                    <SettingsPaging />
+                  </v-col>
+                  <v-col cols="12">
                     <SettingsTheme />
                   </v-col>
                   <v-col cols="12">
@@ -31,9 +34,10 @@
 
 import SettingsTheme from "~/components/settings/Theme";
 import SettingsLanguage from "~/components/settings/Language";
+import SettingsPaging from "@/components/settings/Paging";
 export default {
   name: "Settings",
-  components: {SettingsLanguage, SettingsTheme},
+  components: {SettingsPaging, SettingsLanguage, SettingsTheme},
   data(){
     return {
       panel: 1

@@ -10,6 +10,10 @@
     },
     "date": {
       "format": "DD.MM.YYYY"
+    },
+    "select": {
+      "no-result": "Keine Ergebnisse gefunden",
+      "loading": "Lade..."
     }
   },
   "navigation": {
@@ -93,6 +97,9 @@
   },
   "settings": {
     "title": "Einstellungen",
+    "paging": {
+      "title": "Seitengröße"
+    },
     "theme": {
       "dark": "Nachtmodus"
     },

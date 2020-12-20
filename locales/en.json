@@ -10,6 +10,10 @@
     },
     "date": {
       "format": "YYYY/MM/DD"
+    },
+    "select": {
+      "no-result": "No results found",
+      "loading": "Loading..."
     }
   },
   "navigation": {
@@ -95,6 +99,9 @@
     "title": "Settings",
     "theme": {
       "dark": "Darkmode"
+    },
+    "paging": {
+      "title": "Page size"
     },
     "language": {
       "title": "Language"
