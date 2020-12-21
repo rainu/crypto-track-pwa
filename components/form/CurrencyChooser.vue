@@ -1,9 +1,12 @@
 <template>
   <v-select
+    :label="label"
     :items="items"
     :value="selectedValue"
+    :error="error"
     item-value="value"
     item-text="label"
+    clearable
     @change="onSelectCurrency">
 
     <template v-slot:item="data" >
@@ -31,12 +34,24 @@ export default {
   components: {CurrencyIcon},
   props: {
     value: {
-      default: {
-        name: null,
-        value: null
+      default() {
+        return {
+          name: null,
+          value: null
+        }
       },
       required: false,
       type: Object
+    },
+    error: {
+      required: false,
+      default: false,
+      type: Boolean,
+    },
+    label: {
+      default: '',
+      required: false,
+      type: String
     },
     fiat: {
       default: true,
@@ -68,6 +83,8 @@ export default {
         fiat: [],
         crypto: []
       }
+      let hasWhitelist = this.whitelist.length > 0
+
       if (this.whitelist) {
         //filter out invalid values:
         // empty object
@@ -95,7 +112,7 @@ export default {
 
       if (this.fiat) {
         for (let symbol of Object.keys(fiat)) {
-          if (cleanedWhitelists.fiat.length === 0 || cleanedWhitelists.fiat.includes(symbol)) {
+          if (!hasWhitelist || cleanedWhitelists.fiat.includes(symbol)) {
             items.push({
               label: `${symbol} (${fiat[symbol].label})`,
               value: {
@@ -108,7 +125,7 @@ export default {
       }
       if (this.crypto) {
         for (let symbol of Object.keys(crypto)) {
-          if (cleanedWhitelists.crypto.length === 0 || cleanedWhitelists.crypto.includes(symbol)) {
+          if (!hasWhitelist || cleanedWhitelists.crypto.includes(symbol)) {
             items.push({
               label: `${symbol} (${crypto[symbol].label})`,
               value: {
@@ -143,6 +160,12 @@ export default {
             break;
           }
         }
+      }
+    },
+    items() {
+      if(this.items.length === 1) {
+        this.selectedValue = this.items[0]
+        this.onSelectCurrency(this.items[0].value)
       }
     }
   },

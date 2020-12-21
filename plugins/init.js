@@ -1,4 +1,8 @@
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
+
 //init stuff here
+Vue.use(Vuelidate)
 
 export default function ({app, store}) {
   return Promise.all([

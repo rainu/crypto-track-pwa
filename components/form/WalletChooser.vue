@@ -1,9 +1,12 @@
 <template>
   <v-select
+    :label="label"
     :items="items"
     :value="selectedWallet"
+    :error="error"
     item-text="label"
     item-value="value"
+    clearable
     @change="onSelectWallet">
 
     <template v-slot:no-data>
@@ -21,6 +24,16 @@ export default {
     value: {
       default: '',
       required: true,
+      type: String
+    },
+    error: {
+      required: false,
+      default: false,
+      type: Boolean,
+    },
+    label: {
+      default: '',
+      required: false,
       type: String
     },
     whitelist: {

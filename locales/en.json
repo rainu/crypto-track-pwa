@@ -14,7 +14,11 @@
     "select": {
       "no-result": "No results found",
       "loading": "Loading..."
-    }
+    },
+    "comment": "Comment",
+    "amount": "Amount",
+    "currency": "Currency",
+    "wallet": "Wallet"
   },
   "navigation": {
     "home": "Overview",
