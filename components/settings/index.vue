@@ -19,6 +19,9 @@
                   <v-col cols="12">
                     <SettingsLanguage />
                   </v-col>
+                  <v-col cols="12">
+                    <SettingsDateTime />
+                  </v-col>
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
@@ -35,9 +38,10 @@
 import SettingsTheme from "~/components/settings/Theme";
 import SettingsLanguage from "~/components/settings/Language";
 import SettingsPaging from "@/components/settings/Paging";
+import SettingsDateTime from "@/components/settings/DateTime";
 export default {
   name: "Settings",
-  components: {SettingsPaging, SettingsLanguage, SettingsTheme},
+  components: {SettingsDateTime, SettingsPaging, SettingsLanguage, SettingsTheme},
   data(){
     return {
       panel: 1

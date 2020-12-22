@@ -80,7 +80,7 @@
         return ""
       },
       ldate(date){
-        return moment(date).format(this.$t('common.datetime.format'))
+        return moment(date).format(this.$t('common.datetime.format.datetime'))
       },
     }
   }

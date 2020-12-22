@@ -6,7 +6,16 @@
   },
   "common": {
     "datetime": {
-      "format": "DD.MM.YYYY HH:mm:SS"
+      "locale": "de-DE",
+      "format": {
+        "date": "dd.MM.yyyy",
+        "time": "HH:mm",
+        "datetime": "dd.MM.yyyy HH:mm"
+      }
+    },
+    "confirmation": {
+      "close": "Schließen",
+      "save": "Speichern"
     },
     "date": {
       "format": "DD.MM.YYYY"
@@ -30,6 +39,29 @@
   },
   "transaction": {
     "title": "Transaktion",
+    "type":{
+      "in": "Eingang",
+      "out": "Ausgang"
+    },
+    "common": {
+      "head": "Typ und Datum",
+      "type": "Typ der Transaktion",
+      "date": "Datum",
+      "time": "Zeit",
+      "details": {
+        "title": "Optionale Details",
+        "exchange": "Börse",
+        "group": "Trading Gruppe",
+        "comment": "Kommentar"
+      },
+      "fee": {
+        "title": "Gebühr",
+        "comment": "Kommentar",
+        "included": "Diese Gebühr ist mit inbegriffen.",
+        "not-included": "Diese Gebühr ist zusätzlich."
+      },
+      "save-error": "Die Transaktion konnte nicht gespeichert werden!"
+    },
     "exchange": {
       "title": "Umtausch",
       "in": "Kauf",
@@ -101,6 +133,23 @@
   },
   "settings": {
     "title": "Einstellungen",
+    "date": {
+      "time-format": {
+        "title": "Zeitformat",
+        "24hr": "24 Stunden",
+        "ampm": "AM/PM"
+      },
+      "first-day": {
+        "title": "Erster Tag der Woche",
+        "sunday": "Sonntag",
+        "monday": "Montag",
+        "tuesday": "Dienstag",
+        "wednesday": "Mittwoch",
+        "thursday": "Donnerstag",
+        "friday": "Freitag",
+        "saturday": "Samstag"
+      }
+    },
     "paging": {
       "title": "Seitengröße"
     },

@@ -4,10 +4,16 @@ import {STORE_SETTINGS} from "./localStore"
 const LSK_LANGUAGE = 'language'
 const LSK_DARKMODE = 'darkmode'
 const LSK_PAGE_SIZE_TX = 'paging.transaction'
+const LSK_DATE_TIME_FORMAT = 'date.timeFormat'
+const LSK_DATE_FIRST_DAY = 'date.firstDay'
 
 export const state = () => ({
   locales: i18n.locales,
   locale: i18n.defaultLocale,
+  date: {
+    timeFormat: '24hr',
+    firstDayOfWeek: 1
+  },
   theme: {
     dark: true,
   },
@@ -27,6 +33,12 @@ export const mutations = {
   },
   setTransactionPaging(state, pageSize) {
     state.paging.transaction = pageSize
+  },
+  setDateTimeFormat(state, format) {
+    state.date.timeFormat = format
+  },
+  setDateFirstDay(state, day) {
+    state.date.firstDayOfWeek = day
   },
 }
 
@@ -56,6 +68,18 @@ export const actions = {
             return ctx.dispatch('setTransactionPaging', pageSize)
           }
         }),
+      this.$localStore.get(STORE_SETTINGS, LSK_DATE_TIME_FORMAT)
+        .then(format => {
+          if(format) {
+            return ctx.commit('setDateTimeFormat', format)
+          }
+        }),
+      this.$localStore.get(STORE_SETTINGS, LSK_DATE_FIRST_DAY)
+        .then(day => {
+          if(day) {
+            return ctx.commit('setDateFirstDay', day)
+          }
+        }),
     ])
   },
 
@@ -70,6 +94,14 @@ export const actions = {
   setTransactionPaging(ctx, pageSize) {
     ctx.commit('setTransactionPaging', pageSize)
     return this.$localStore.set(STORE_SETTINGS, LSK_PAGE_SIZE_TX, pageSize)
+  },
+  setDateTimeFormat(ctx, format) {
+    ctx.commit('setDateTimeFormat', format)
+    return this.$localStore.setDateTimeFormat(format)
+  },
+  setDateFirstDay(ctx, day) {
+    ctx.commit('setDateFirstDay', day)
+    return this.$localStore.setDateFirstDay(day)
   },
 
   applyLanguage(ctx, lang) {

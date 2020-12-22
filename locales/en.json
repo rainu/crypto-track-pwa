@@ -6,7 +6,16 @@
   },
   "common": {
     "datetime": {
-      "format": "YYYY/MM/DD HH:mm:SS"
+      "locale": "en-US",
+      "format": {
+        "date": "yyyy-MM-dd",
+        "time": "HH:mm",
+        "datetime": "yyyy-MM-dd HH:mm"
+      }
+    },
+    "confirmation": {
+      "close": "Close",
+      "save": "Save"
     },
     "date": {
       "format": "YYYY/MM/DD"
@@ -30,6 +39,29 @@
   },
   "transaction": {
     "title": "Transaction",
+    "type":{
+      "in": "Income",
+      "out": "Outcome"
+    },
+    "common": {
+      "head": "Type and Date",
+      "type": "Type of transaction",
+      "date": "Date",
+      "time": "Time",
+      "details": {
+        "title": "Details (optional)",
+        "exchange": "Exchange",
+        "group": "Trading Group",
+        "comment": "Comment"
+      },
+      "fee": {
+        "title": "Fee",
+        "comment": "Comment",
+        "included": "This fee is inclusive.",
+        "not-included": "This fee is not inclusive."
+      },
+      "save-error": "The transaction could not be saved!"
+    },
     "exchange": {
       "title": "Exchange",
       "in": "Buy",
@@ -103,6 +135,23 @@
     "title": "Settings",
     "theme": {
       "dark": "Darkmode"
+    },
+    "date": {
+      "time-format": {
+        "title": "Timeformat",
+        "24hr": "24 Hours",
+        "ampm": "AM/PM"
+      },
+      "first-day": {
+        "title": "First day of week",
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      }
     },
     "paging": {
       "title": "Page size"
