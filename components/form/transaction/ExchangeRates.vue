@@ -4,21 +4,23 @@
       <slot></slot>
     </v-card-title>
 
-    <v-row>
-      <v-col cols="12">
-        <template v-for="(curRate, i) in rates">
-          <ExchangeRate v-model="rates[i]"/>
-        </template>
-      </v-col>
-    </v-row>
+    <v-card-text>
+      <v-row>
+        <v-col cols="12">
+          <template v-for="(curRate, i) in rates">
+            <ExchangeRate v-model="rates[i]"/>
+          </template>
+        </v-col>
+      </v-row>
 
-    <v-row>
-      <v-col cols="12">
-        <v-btn block color="success" @click.prevent="addRate">
-          <v-icon>add_circle</v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-btn block color="success" @click.prevent="addRate">
+            <v-icon>add_circle</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-card-text>
   </v-card>
 </template>
 

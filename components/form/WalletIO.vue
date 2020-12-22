@@ -21,6 +21,8 @@
           <v-text-field :label="$t('common.comment')" v-model="container.comment"/>
         </v-col>
       </v-row>
+
+      <slot name="bottom"></slot>
     </v-card-text>
   </v-card>
 </template>
