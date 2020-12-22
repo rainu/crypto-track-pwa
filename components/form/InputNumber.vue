@@ -1,5 +1,5 @@
 <template>
-  <v-text-field :label="label" :value="displayValue" @change="setValue" :error="error"/>
+  <v-text-field :label="label" :value="displayValue" @change="setValue" :error="error" :dense="dense"/>
 </template>
 
 <script>
@@ -22,6 +22,11 @@ export default {
       required: false,
       default: false,
       type: Boolean,
+    },
+    dense: {
+      required: false,
+      default: false,
+      type: Boolean
     },
     numberFormat: {
       default: '0.00',
