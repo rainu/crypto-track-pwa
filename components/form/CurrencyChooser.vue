@@ -1,5 +1,5 @@
 <template>
-  <v-select
+  <v-autocomplete
     :label="label"
     :items="items"
     :value="selectedValue"
@@ -22,7 +22,7 @@
     <template v-slot:no-data>
       <span>{{$t('common.select.no-result')}}</span>
     </template>
-  </v-select>
+  </v-autocomplete>
 </template>
 
 <script>
