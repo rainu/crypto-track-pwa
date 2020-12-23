@@ -1,13 +1,12 @@
 <template>
   <v-container fluid>
     <v-alert type="error" dense dismissible v-if="saveError">{{ $t('transaction.common.save-error') }}</v-alert>
+    <v-alert type="success" dense dismissible v-if="saveSuccess">{{ $t('transaction.edit-success') }}</v-alert>
 
     <v-row>
       <v-col cols="12">
         <v-card>
-          <v-card-title>
-            {{ $t('transaction.common.head') }}
-          </v-card-title>
+          <v-card-title>{{ $t('transaction.common.head') }}</v-card-title>
 
           <v-card-text class="pb-0">
             <v-row>
@@ -30,8 +29,7 @@
                       <v-list-item-title>{{ $t(data.item.text) }}</v-list-item-title>
                     </v-list-item>
                     <v-list-item v-if="data.item.type === 'group'" dense>
-                      <v-list-item-icon v-if="data.item.text">{{ $t(data.item.text) }}
-                      </v-list-item-icon>
+                      <v-list-item-icon v-if="data.item.text">{{ $t(data.item.text) }}</v-list-item-icon>
                       <v-list-item-title>
                         <v-divider></v-divider>
                       </v-list-item-title>
@@ -66,6 +64,10 @@
         <v-toolbar-items class="flex-grow-1"></v-toolbar-items>
 
         <v-toolbar-items>
+          <v-btn to="/transaction" tile color="warning" class="mr-2">
+            <v-icon left>mdi-keyboard-backspace</v-icon>
+            {{ $t('common.back') }}
+          </v-btn>
           <v-btn @click="submit" :disabled="$v.$invalid" tile color="success">
             <v-icon left>mdi-content-save</v-icon>
             {{ $t('common.confirmation.save') }}
@@ -77,9 +79,8 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import {required, requiredIf, minValue} from 'vuelidate/lib/validators'
-import { v4 as uuid4 } from 'uuid';
 
 import DateTimePicker from "@/components/form/DateTimePicker";
 import Exchange from "@/components/form/transaction/Exchange";
@@ -112,8 +113,9 @@ export default {
         {type: 'item', sign: '<->', text: 'transaction.transfer.title', value: 'transfer'},
       ],
 
+      transaction: null,
       date: new Date(),
-      type: 'exchange',
+      type: '',
       container: {
         donation: null,
         giftIn: null,
@@ -125,7 +127,8 @@ export default {
         exchange: null,
         transfer: null,
       },
-      saveError: false
+      saveError: false,
+      saveSuccess: false
     }
   },
   validations: {
@@ -147,9 +150,14 @@ export default {
       required
     }
   },
+  computed: {
+    ...mapGetters({
+      transactionById: 'transactions/byId'
+    }),
+  },
   methods: {
     ...mapActions({
-      storeNewTransaction: 'transactions/addTransaction'
+      storeTransaction: 'transactions/saveTransaction'
     }),
     submit() {
       //we have to inline the container fields
@@ -158,7 +166,7 @@ export default {
       let container = this.container[type];
 
       let payload = {
-        id: uuid4(),
+        id: this.transaction.id,
         date,
         type,
         involvedWallets: container.involvedWallets,
@@ -168,15 +176,25 @@ export default {
       delete payload.data.involvedWallets
       delete payload.data.involvedCurrencies
 
-      this.storeNewTransaction(payload).then(() => {
+      this.storeTransaction(payload).then(() => {
         //storing was successful
-        this.$router.push({path: "/transaction"})
+        this.saveSuccess = true
       }).catch(err => {
         this.saveError = true
       })
     }
   },
   mounted() {
+    this.transaction = this.transactionById(this.$route.params.id)
+    this.date = new Date(this.transaction.date)
+    this.type = this.transaction.type
+
+    this.container[this.type] = {
+      //make sure to COPY the data, to prevent direct data-changes
+      //(it should only apply after submit the form)
+      data: {...this.transaction.data}
+    }
+
     this.$v.container.$touch()
   },
   watch: {

@@ -5,6 +5,7 @@
     }
   },
   "common": {
+    "back": "Back",
     "datetime": {
       "locale": "en-US",
       "format": {
@@ -39,6 +40,7 @@
   },
   "transaction": {
     "title": "Transaction",
+    "edit-success": "The transaction was successful saved.",
     "type":{
       "in": "Income",
       "out": "Outcome"

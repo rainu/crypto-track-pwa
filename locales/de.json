@@ -5,6 +5,7 @@
     }
   },
   "common": {
+    "back": "Zurück",
     "datetime": {
       "locale": "de-DE",
       "format": {
@@ -39,6 +40,7 @@
   },
   "transaction": {
     "title": "Transaktion",
+    "edit-success": "Die Transaktion wurde erfolgreich aktualisiert.",
     "type":{
       "in": "Eingang",
       "out": "Ausgang"
