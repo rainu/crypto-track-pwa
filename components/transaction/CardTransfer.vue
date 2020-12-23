@@ -22,7 +22,7 @@
       <!-- wallets and amount -->
       <v-list-item>
         <v-list-item-subtitle></v-list-item-subtitle>
-        <v-list-item-subtitle>
+        <v-list-item-subtitle class="text-center">
           <CurrencyAmount :amount="tx.data.amount" :currency="tx.data.currency"/>
         </v-list-item-subtitle>
         <v-list-item-subtitle></v-list-item-subtitle>
