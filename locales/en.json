@@ -150,6 +150,12 @@
     "currency": "Supported Currencies",
     "name": "Displayname",
     "comment": "Comment",
+    "edit-success": "The wallet was successful saved.",
+    "delete-question": {
+      "title": "Are you sure to delete the following wallet?",
+      "name": "Name of wallet",
+      "address": "Address of wallet"
+    },
     "save-error": "The wallet could not be saved!"
   },
   "settings": {

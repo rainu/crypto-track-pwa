@@ -145,7 +145,7 @@ export default {
   methods: {
     remove (item) {
       let index = this.selectedValues.findIndex(currency => {
-        return currency.name === item.value.name && currency.type === item.value.type
+        return currency.value.name === item.value.name && currency.value.type === item.value.type
       })
       if (index >= 0) this.selectedValues.splice(index, 1)
     },
@@ -153,18 +153,20 @@ export default {
       this.$emit('input', currencies)
     }
   },
-  mounted() {
-    if (this.value) {
-      this.selectedValues = this.items.filter(option => {
-        for(let so of this.value) {
-          if(option.value === so.name && option.type === so.type){
-            return true;
+  watch: {
+    value(){
+      if (this.value) {
+        this.selectedValues = this.items.filter(option => {
+          for(let so of this.value) {
+            if(option.value.name === so.name && option.value.type === so.type){
+              return true;
+            }
           }
-        }
-        return false;
-      })
+          return false;
+        })
+      }
     }
-  }
+  },
 }
 </script>
 

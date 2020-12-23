@@ -150,6 +150,12 @@
     "currency": "Unterstüzte Währungen",
     "name": "Anzeigename",
     "comment": "Beschreibung",
+    "edit-success": "Das Wallet wurde erfolgreich aktualisiert.",
+    "delete-question": {
+      "title": "Wollen Sie wirklich das folgende Wallet löschen?",
+      "name": "Name der Wallet",
+      "address": "Adresse der Wallet"
+    },
     "save-error": "Die Wallet konnte nicht gespeichert werden!"
   },
   "settings": {

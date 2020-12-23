@@ -13,6 +13,10 @@
         </v-list-item-subtitle>
       </v-list-item>
     </v-list>
+
+    <v-card-actions>
+      <slot></slot>
+    </v-card-actions>
   </v-card>
 </template>
 
