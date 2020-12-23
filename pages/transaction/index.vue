@@ -43,8 +43,9 @@
         <v-toolbar-items class="flex-grow-1"></v-toolbar-items>
 
         <v-toolbar-items>
-          <v-btn icon @click="onNewTransaction">
+          <v-btn tile class="primary" @click="onNewTransaction">
             <v-icon>add_circle</v-icon>
+            {{ $t('common.new') }}
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>

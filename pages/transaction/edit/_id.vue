@@ -68,7 +68,7 @@
             <v-icon left>mdi-keyboard-backspace</v-icon>
             {{ $t('common.back') }}
           </v-btn>
-          <v-btn @click="submit" :disabled="$v.$invalid" tile color="success">
+          <v-btn @click="submit" :disabled="$v.$invalid" tile color="primary">
             <v-icon left>mdi-content-save</v-icon>
             {{ $t('common.confirmation.save') }}
           </v-btn>

@@ -66,7 +66,13 @@
         <v-toolbar-items class="flex-grow-1"></v-toolbar-items>
 
         <v-toolbar-items>
-          <v-btn @click="submit" :disabled="$v.$invalid" tile color="success">
+          <v-btn to="/transaction" tile color="warning" class="mr-2">
+            <v-icon left>mdi-keyboard-backspace</v-icon>
+            {{ $t('common.back') }}
+          </v-btn>
+        </v-toolbar-items>
+        <v-toolbar-items>
+          <v-btn @click="submit" :disabled="$v.$invalid" tile color="primary">
             <v-icon left>mdi-content-save</v-icon>
             {{ $t('common.confirmation.save') }}
           </v-btn>
