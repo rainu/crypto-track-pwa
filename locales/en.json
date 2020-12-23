@@ -6,6 +6,7 @@
   },
   "common": {
     "back": "Back",
+    "new": "New",
     "edit": "Edit",
     "delete": "Delete",
     "ok": "OK",
@@ -144,7 +145,12 @@
     }
   },
   "wallet": {
-    "title": "Wallet"
+    "title": "Wallet",
+    "address": "Address",
+    "currency": "Supported Currencies",
+    "name": "Displayname",
+    "comment": "Comment",
+    "save-error": "The wallet could not be saved!"
   },
   "settings": {
     "title": "Settings",
