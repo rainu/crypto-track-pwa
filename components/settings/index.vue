@@ -44,7 +44,7 @@ export default {
   components: {SettingsDateTime, SettingsPaging, SettingsLanguage, SettingsTheme},
   data(){
     return {
-      panel: 1
+      panel: 0
     }
   }
 }
