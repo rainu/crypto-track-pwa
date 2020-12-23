@@ -6,12 +6,20 @@
   },
   "common": {
     "back": "Back",
+    "edit": "Edit",
+    "delete": "Delete",
+    "ok": "OK",
+    "abort": "Abort",
     "datetime": {
       "locale": "en-US",
       "format": {
-        "date": "yyyy-MM-dd",
-        "time": "HH:mm",
-        "datetime": "yyyy-MM-dd HH:mm"
+        "dateFN": {
+          "date": "yyyy-MM-dd",
+          "time": "HH:mm"
+        },
+        "moment": {
+          "datetime": "YYYY-MM-DD HH:mm"
+        }
       }
     },
     "confirmation": {
@@ -41,6 +49,11 @@
   "transaction": {
     "title": "Transaction",
     "edit-success": "The transaction was successful saved.",
+    "delete-question": {
+      "title": "Are you sure to delete the following transaction?",
+      "type": "Type of transaction",
+      "date": "Date of transaction"
+    },
     "type":{
       "in": "Income",
       "out": "Outcome"

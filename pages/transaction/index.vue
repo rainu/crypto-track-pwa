@@ -2,15 +2,15 @@
   <v-container fluid>
     <v-row v-for="tx in transactionView" :key="tx.id">
       <v-col cols="12" >
-        <card-donation v-if="tx.type === 'donation'" :tx="tx"><slot v-bind:tx="tx"></slot></card-donation>
-        <card-exchange v-else-if="tx.type === 'exchange'" :tx="tx"><slot v-bind:tx="tx"></slot></card-exchange>
-        <card-gift-in v-else-if="tx.type === 'giftIn'" :tx="tx"><slot v-bind:tx="tx"></slot></card-gift-in>
-        <card-gift-out v-else-if="tx.type === 'giftOut'" :tx="tx"><slot v-bind:tx="tx"></slot></card-gift-out>
-        <card-income v-else-if="tx.type === 'income'" :tx="tx"><slot v-bind:tx="tx"></slot></card-income>
-        <card-lost v-else-if="tx.type === 'lost'" :tx="tx"><slot v-bind:tx="tx"></slot></card-lost>
-        <card-spent v-else-if="tx.type === 'spent'" :tx="tx"><slot v-bind:tx="tx"></slot></card-spent>
-        <card-stolen v-else-if="tx.type === 'stolen'" :tx="tx"><slot v-bind:tx="tx"></slot></card-stolen>
-        <card-transfer v-else-if="tx.type === 'transfer'" :tx="tx"><slot v-bind:tx="tx"></slot></card-transfer>
+        <card-donation v-if="tx.type === 'donation'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-donation>
+        <card-exchange v-else-if="tx.type === 'exchange'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-exchange>
+        <card-gift-in v-else-if="tx.type === 'giftIn'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-gift-in>
+        <card-gift-out v-else-if="tx.type === 'giftOut'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-gift-out>
+        <card-income v-else-if="tx.type === 'income'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-income>
+        <card-lost v-else-if="tx.type === 'lost'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-lost>
+        <card-spent v-else-if="tx.type === 'spent'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-spent>
+        <card-stolen v-else-if="tx.type === 'stolen'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-stolen>
+        <card-transfer v-else-if="tx.type === 'transfer'" :tx="tx"><TransactionActions slot-scope="{tx}" :value="tx" /></card-transfer>
       </v-col>
     </v-row>
 
@@ -65,11 +65,10 @@ import CardLost from "@/components/transaction/CardLost";
 import CardSpent from "@/components/transaction/CardSpent";
 import CardStolen from "@/components/transaction/CardStolen";
 import CardTransfer from "@/components/transaction/CardTransfer";
+import TransactionActions from "@/components/transaction/Actions";
 
 export default {
-  components: {
-    InfiniteLoading, CardTransfer, CardStolen, CardSpent, CardLost, CardIncome, CardGiftOut, CardGiftIn, CardDonation, CardExchange
-  },
+  components: { TransactionActions, InfiniteLoading, CardTransfer, CardStolen, CardSpent, CardLost, CardIncome, CardGiftOut, CardGiftIn, CardDonation, CardExchange },
   data(){
     return {
       deleteRequest: null,
@@ -106,7 +105,7 @@ export default {
       return ""
     },
     ldate(date){
-      return moment(date).format(this.$t('common.datetime.format.datetime'))
+      return moment(date).format(this.$t('common.datetime.format.moment.datetime'))
     },
     infiniteHandler($state){
       this.maxItems += this.pageSize

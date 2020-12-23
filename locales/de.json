@@ -6,12 +6,20 @@
   },
   "common": {
     "back": "Zurück",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "ok": "OK",
+    "abort": "Abbrechen",
     "datetime": {
       "locale": "de-DE",
       "format": {
-        "date": "dd.MM.yyyy",
-        "time": "HH:mm",
-        "datetime": "dd.MM.yyyy HH:mm"
+        "dateFN": {
+          "date": "dd.MM.yyyy",
+          "time": "HH:mm"
+        },
+        "moment": {
+          "datetime": "DD.MM.YYYY HH:mm"
+        }
       }
     },
     "confirmation": {
@@ -41,6 +49,11 @@
   "transaction": {
     "title": "Transaktion",
     "edit-success": "Die Transaktion wurde erfolgreich aktualisiert.",
+    "delete-question": {
+      "title": "Wollen Sie wirklich die folgende Transaktion löschen?",
+      "type": "Typ der Transaktion",
+      "date": "Datum der Transaktion"
+    },
     "type":{
       "in": "Eingang",
       "out": "Ausgang"
