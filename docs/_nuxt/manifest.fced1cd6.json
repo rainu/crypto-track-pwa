@@ -52,12 +52,12 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
+  "start_url": "/crypto-track-pwa/",
   "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#008078",
   "lang": "de-DE",
   "dir": "ltr",
-  "scope": ".",
+  "scope": "/crypto-track-pwa/.",
   "orientation": "portrait-primary"
 }
