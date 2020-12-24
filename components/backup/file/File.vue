@@ -1,6 +1,6 @@
 <template>
   <v-card>
-
+    <v-card-title>{{ $t('backup.file.title') }}</v-card-title>
     <v-card-actions>
       <v-row align="center">
         <v-col md="6">

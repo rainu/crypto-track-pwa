@@ -212,6 +212,10 @@
         "title": "Export file"
       }
     },
+    "cointracking": {
+      "title": "Cointracking.info",
+      "failed": "The file could not be generated! Error: {err}"
+    },
     "reload": "To commit the changes, the application will be reloaded."
   }
 }

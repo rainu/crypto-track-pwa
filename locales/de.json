@@ -212,6 +212,10 @@
         "title": "Datei exportieren"
       }
     },
+    "cointracking": {
+      "title": "Cointracking.info",
+      "failed": "Die Datei konnte nicht generiert werden! Fehler: {err}"
+    },
     "reload": "Damit die Änderungen wirksam werden, wird die Anwendung neu geladen."
   }
 }
