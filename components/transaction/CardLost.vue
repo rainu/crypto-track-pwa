@@ -48,9 +48,11 @@
 <script>
 import moment from 'moment'
 import {mapGetters} from 'vuex';
+import CurrencyAmount from "@/components/CurrencyAmount";
 
 export default {
   name: "CardLost",
+  components: {CurrencyAmount},
   props: {
     tx: {
       required: true,
@@ -65,7 +67,7 @@ export default {
       wallet: 'wallets/byId'
     }),
     ldate() {
-      return moment(this.date).format(this.$t('common.datetime.format.moment.datetime'))
+      return moment(this.tx.date).format(this.$t('common.datetime.format.moment.datetime'))
     },
   },
   methods: {
