@@ -1,6 +1,8 @@
 import { STORE_CURRENCIES, STORE_WALLETS, STORE_TRANSACTIONS, STORE_SETTINGS } from "./localStore"
 
 let applyBackupFor = ($localStore, storeName, content) => {
+  if(!content) return Promise.resolve()
+
   return $localStore.clear(storeName)
     .then(() => Object.entries(content).map(([key, value]) => $localStore.set(storeName, key, value)))
     .then(promises => Promise.all(promises))
@@ -18,7 +20,6 @@ export const actions = {
     })
   },
   applyBackup(ctx, content) {
-    debugger
     return Promise.all([
       applyBackupFor(this.$localStore, STORE_CURRENCIES, content.currencies),
       applyBackupFor(this.$localStore, STORE_WALLETS, content.wallets),
