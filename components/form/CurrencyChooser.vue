@@ -146,18 +146,11 @@ export default {
   },
   watch: {
     value() {
-      if (this.value.name === '') {
-        this.selectedValue = ''
-      } else if (
-        !this.selectedValue || (
-        this.selectedValue &&
-        this.selectedValue.name !== this.value.name &&
-        this.selectedValue.type !== this.value.type)
-      ) {
+      if (this.value) {
         for (let curOpt of this.items) {
-          if (curOpt.value === this.value.name) {
-            this.selectedValue = curOpt;
-            break;
+          if (curOpt.value.name === this.value.name && curOpt.value.type === this.value.type) {
+            this.selectedValue = curOpt
+            break
           }
         }
       }
@@ -172,7 +165,7 @@ export default {
   mounted() {
     if (this.value) {
       for (let curOpt of this.items) {
-        if (curOpt.value === this.value.name && curOpt.type === this.value.type) {
+        if (curOpt.value.name === this.value.name && curOpt.value.type === this.value.type) {
           this.selectedValue = curOpt
           break
         }

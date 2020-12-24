@@ -123,6 +123,11 @@ export default {
     },
   },
   watch: {
+    value(){
+      this.datetime = this.value
+      this.date.value = dateFN.format(this.value, 'yyyy-MM-dd')
+      this.datetime.value = dateFN.format(this.value, 'HH:mm')
+    },
     'date.value'() {
       this.recalcNoteDate()
       this.$emit('input', this.datetime)
