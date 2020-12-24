@@ -56,8 +56,8 @@ export default {
     "scope": routerBase.router.base + ".",
     "display": "standalone",
     "orientation": "portrait-primary",
-    "background_color": "#fff",
-    "theme_color": "#008078",
+    "background_color": "#303030",
+    "theme_color": "#424242",
     "description": "Tracking your cryptocurrency portfolio.",
     "dir": "ltr",
     "lang": "de-DE"
