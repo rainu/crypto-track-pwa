@@ -189,5 +189,20 @@
     "others": {
       "title": "Others"
     }
+  },
+  "backup": {
+    "title": "Backup",
+    "file": {
+      "title": "File",
+      "import": {
+        "title": "Import file",
+        "failed": "The import failed. Error: {err}",
+        "success": "The import was successful."
+      },
+      "export": {
+        "title": "Export file"
+      }
+    },
+    "reload": "To commit the changes, the application will be reloaded."
   }
 }

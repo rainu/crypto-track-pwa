@@ -61,6 +61,11 @@ export default {
           icon: 'mdi-briefcase',
           title: 'wallet.title',
           to: '/wallet'
+        },
+        {
+          icon: 'import_export',
+          title: 'backup.title',
+          to: '/backup'
         }
       ],
       rightDrawer: false,

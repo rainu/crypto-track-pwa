@@ -76,12 +76,24 @@ export function newLocalStore() {
 
     getAll(storeName){
       return stores[storeName].keys()
-      .then(keys => keys.map(id => this.get(storeName, id)))
-      .then(promises => Promise.all(promises))
+        .then(keys => keys.map(id => this.get(storeName, id)))
+        .then(promises => Promise.all(promises))
+    },
+
+    getAllEntries(storeName) {
+      let result = {}
+
+      return stores[storeName]
+        .iterate((v, k) => { result[k] = v})
+        .then(() => result)
     },
 
     remove(storeName, key) {
       stores[storeName].removeItem(key)
+    },
+
+    clear(storeName) {
+      return stores[storeName].clear()
     }
 
   }

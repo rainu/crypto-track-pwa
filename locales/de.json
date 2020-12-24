@@ -189,5 +189,20 @@
     "others":{
       "title": "Andere"
     }
+  },
+  "backup": {
+    "title": "Sicherung",
+    "file": {
+      "title": "Datei",
+      "import": {
+        "title": "Datei importieren",
+        "failed": "Die Datei konnte nicht importiert werden! Fehler: {err}",
+        "success": "Die Datei wurde erfolgreich importiert."
+      },
+      "export": {
+        "title": "Datei exportieren"
+      }
+    },
+    "reload": "Damit die Änderungen wirksam werden, wird die Anwendung neu geladen."
   }
 }
