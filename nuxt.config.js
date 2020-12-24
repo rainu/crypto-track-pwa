@@ -52,8 +52,8 @@ export default {
   manifest: {
     "name": "Tracking your cryptocurrency portfolio",
     "short_name": "CryptoTrack",
-    "start_url": "/",
-    "scope": ".",
+    "start_url": routerBase.router.base,
+    "scope": routerBase.router.base + ".",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#fff",
