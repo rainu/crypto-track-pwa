@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "dev": "COMMIT_HASH=$(git rev-parse HEAD) nuxt",
+    "start": "COMMIT_HASH=$(git rev-parse HEAD) nuxt start",
+    "generate": "DEPLOY_ENV=GH_PAGES COMMIT_HASH=$(git rev-parse HEAD) nuxt generate"
   },
   "dependencies": {
     "@mdi/font": "^5.8.55",

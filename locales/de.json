@@ -1,4 +1,13 @@
 {
+  "about":{
+    "title": "CryptoTrack",
+    "author": "Autor",
+    "code": "Quellcode",
+    "license": "Lizenz",
+    "bug": "Fehler melden",
+    "version": "Version",
+    "close": "Ok"
+  },
   "meta": {
     "language": {
       "code": "Deutsch"

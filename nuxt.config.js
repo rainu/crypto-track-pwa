@@ -1,8 +1,25 @@
 import colors from 'vuetify/es5/util/colors'
 
+// only add `router.base = '/<repository-name>/'` if `DEPLOY_ENV` is `GH_PAGES`
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/crypto-track-pwa/'
+  }
+} : {
+  router: {
+    base: '/'
+  }
+}
+
 export default {
+  ...routerBase,
+
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
+
+  generate: {
+    dir: 'docs'
+  },
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -14,13 +31,18 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Tracking your cryptocurrency portfolio' }
+      { hid: 'description', name: 'description', content: 'Tracking your cryptocurrency portfolio' },
+      { rel: 'icon', type: 'image/x-icon', href: `${routerBase.router.base}favicon.ico` }
     ],
     link: []
   },
 
   env: {
     appName: process.env.npm_package_name,
+    routerBase: routerBase.router.base,
+    version: process.env.npm_package_version,
+    builtDate: new Date(),
+    revision: process.env.COMMIT_HASH || 'development',
   },
 
   icon: {
@@ -94,5 +116,12 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend (config, ctx) {
+      //we need the compiler-included build for template-notes!
+      config.resolve.alias['vue'] = 'vue/dist/vue.common'
+    }
   }
 }

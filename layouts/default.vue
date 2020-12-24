@@ -23,6 +23,10 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
       <v-spacer />
+
+      <v-toolbar-items>
+        <Info />
+      </v-toolbar-items>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>settings</v-icon>
       </v-btn>
@@ -40,9 +44,10 @@
 
 <script>
 import Settings from "~/components/settings/index";
+import Info from "@/components/Info";
 
 export default {
-  components: {Settings},
+  components: {Info, Settings},
   data () {
     return {
       drawer: false,
