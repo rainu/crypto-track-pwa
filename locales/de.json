@@ -23,13 +23,9 @@
     "datetime": {
       "locale": "de-DE",
       "format": {
-        "dateFN": {
-          "date": "dd.MM.yyyy",
-          "time": "HH:mm"
-        },
-        "moment": {
-          "datetime": "DD.MM.YYYY HH:mm"
-        }
+        "date": "dd.MM.yyyy",
+        "time": "HH:mm",
+        "datetime": "dd.MM.yyyy HH:mm"
       }
     },
     "confirmation": {

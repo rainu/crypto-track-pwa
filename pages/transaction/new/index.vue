@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import * as dateFN from 'date-fns'
 import {mapActions} from 'vuex';
 import {required, requiredIf, minValue} from 'vuelidate/lib/validators'
 import { v4 as uuid4 } from 'uuid';
@@ -159,7 +160,7 @@ export default {
     }),
     submit() {
       //we have to inline the container fields
-      let date = this.date;
+      let date = dateFN.formatISO(this.date);
       let type = this.type;
       let container = this.container[type];
 

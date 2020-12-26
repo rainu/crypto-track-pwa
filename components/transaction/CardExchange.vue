@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import * as dateFN from 'date-fns'
 import {mapGetters} from 'vuex';
 import CurrencyAmount from "@/components/CurrencyAmount";
 
@@ -85,7 +85,7 @@ export default {
       wallet: 'wallets/byId'
     }),
     ldate() {
-      return moment(this.tx.date).format(this.$t('common.datetime.format.moment.datetime'))
+      return dateFN.format(dateFN.parseISO(this.tx.date), this.$t('common.datetime.format.datetime'))
     },
   },
   methods: {

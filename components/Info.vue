@@ -103,7 +103,7 @@
     },
     computed: {
       formattedBuiltDate(){
-        return dateFN.format(this.builtDate, this.$t('common.datetime.format.dateFN.date'))
+        return dateFN.format(this.builtDate, this.$t('common.datetime.format.date'))
       }
     }
   }

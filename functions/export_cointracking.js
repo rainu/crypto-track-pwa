@@ -1,5 +1,5 @@
 import json2csv from 'json2csv'
-import moment from 'moment'
+import * as dateFN from 'date-fns'
 
 //"Type", "Buy Amount", "Buy Currency", "Sell Amount", "Sell Currency", "Fee", "Fee Currency", "Exchange", "Trade-Group", "Comment", "Date", "Tx-ID", "Buy Value in your Account Currency", "Sell Value in your Account Currency"
 const fields = [
@@ -95,7 +95,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     }]
   },
   'transfer': (tx) => {
@@ -112,7 +112,7 @@ let handleMap = {
         group: tx.data.details.group,
       },
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     },{
       type: 'Deposit',
       buy: {
@@ -125,7 +125,7 @@ let handleMap = {
         group: tx.data.details.group,
       },
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date:dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     }]
   },
   'spent': (tx) => {
@@ -143,7 +143,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     }]
   },
   'giftIn': (tx) => {
@@ -161,7 +161,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     }]
   },
   'giftOut': (tx) => {
@@ -179,7 +179,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     }]
   },
   'lost': (tx) => {
@@ -197,7 +197,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: moment(tx.date).format('YYYY-MM-DD HH:mm')
+      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
     }]
   },
   'stolen': (tx) => this.lost(tx)

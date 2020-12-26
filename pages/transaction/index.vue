@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import * as dateFN from 'date-fns'
 import { mapState, mapGetters } from 'vuex';
 import InfiniteLoading from 'vue-infinite-loading';
 import CardExchange from "@/components/transaction/CardExchange";
@@ -106,7 +106,7 @@ export default {
       return ""
     },
     ldate(date){
-      return moment(date).format(this.$t('common.datetime.format.moment.datetime'))
+      return dateFN.format(date, this.$t('common.datetime.format.datetime'))
     },
     infiniteHandler($state){
       this.maxItems += this.pageSize

@@ -17,7 +17,6 @@
     "json2csv": "^5.0.5",
     "localforage": "^1.9.0",
     "material-design-icons-iconfont": "^6.1.0",
-    "moment": "^2.29.1",
     "numeral": "^2.0.6",
     "nuxt": "^2.14.6",
     "uuid": "^8.3.2",

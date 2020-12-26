@@ -149,7 +149,7 @@ export default {
     ldate(date) {
       if(!date) return '-'
 
-      return dateFN.format(date, this.$t('common.datetime.format.dateFN.date'))
+      return dateFN.format(date, this.$t('common.datetime.format.date'))
     },
     updateLastFiatCourseDate(currencyName){
       Vue.delete(this.lastFiatCourses, currencyName)

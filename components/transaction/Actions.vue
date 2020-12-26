@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import * as dateFN from 'date-fns'
 import { mapActions } from 'vuex'
 
 export default {
@@ -77,7 +77,7 @@ export default {
       }
     },
     ldate() {
-      return moment(this.value.date).format(this.$t('common.datetime.format.moment.datetime'))
+      return dateFN.format(dateFN.parseISO(this.value.date), this.$t('common.datetime.format.datetime'))
     },
   },
   methods: {

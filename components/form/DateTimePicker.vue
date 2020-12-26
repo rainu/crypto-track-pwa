@@ -106,10 +106,10 @@ export default {
       timeFormat: state => state.settings.date.timeFormat,
     }),
     formattedDate() {
-      return dateFN.format(this.datetime, this.$t('common.datetime.format.dateFN.date'))
+      return dateFN.format(this.datetime, this.$t('common.datetime.format.date'))
     },
     formattedTime() {
-      return dateFN.format(this.datetime, this.$t('common.datetime.format.dateFN.time'))
+      return dateFN.format(this.datetime, this.$t('common.datetime.format.time'))
     },
   },
   methods: {
