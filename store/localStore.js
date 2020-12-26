@@ -7,6 +7,7 @@ export const STORE_SETTINGS = 'settings'
 export const STORE_CURRENCIES = 'currencies'
 export const STORE_WALLETS = 'wallets'
 export const STORE_TRANSACTIONS = 'transactions'
+export const STORE_COURSES = 'courses'
 
 export function newLocalStore() {
   const stores = {}
@@ -35,20 +36,17 @@ export function newLocalStore() {
     version: 1.0,
     storeName: STORE_TRANSACTIONS, // Should be alphanumeric, with underscores.
   })
+  stores[STORE_COURSES] = localforage.createInstance({
+    name: process.env.appName,
+    version: 1.0,
+    storeName: STORE_COURSES, // Should be alphanumeric, with underscores.
+  })
 
-  return {
-    ready() {
-      return Promise.all(Object.values(stores).map(
-        store => store.ready()
-      ))
-      .then(() => this.$migrate())
-    },
+  const $migrate = () => {
+    const KEY_VERSION = 'version.store'
 
-    $migrate(){
-      const KEY_VERSION = 'version.store'
-
-      //get the current schema version
-      return stores[STORE_META].getItem(KEY_VERSION)
+    //get the current schema version
+    return stores[STORE_META].getItem(KEY_VERSION)
       .then(storeVersion => {
         let currentMigrationVersion = storeVersion ? storeVersion : 0
 
@@ -57,13 +55,22 @@ export function newLocalStore() {
           p = p.then(() => {
             console.log(`Migration: do Step ${i + 1} of ${migrationSteps.length}`)
             return migrationSteps[i](stores)
-          }).then(() => {
+          })
+          .then(() => {
             return stores[STORE_META].setItem(KEY_VERSION, i + 1)
           })
         }
 
         return p
       })
+  }
+
+  return {
+    ready() {
+      return Promise.all(Object.values(stores).map(
+        store => store.ready()
+      ))
+      .then(() => $migrate())
     },
 
     set(storeName, key, value) {
@@ -86,6 +93,10 @@ export function newLocalStore() {
       return stores[storeName]
         .iterate((v, k) => { result[k] = v})
         .then(() => result)
+    },
+
+    getKeys(storeName) {
+      return stores[storeName].keys()
     },
 
     remove(storeName, key) {

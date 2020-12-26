@@ -1,6 +1,6 @@
 <template>
   <i>
-    <cryptoicon v-if="isSymbolKnown" :symbol="symbol" :size="12" :color="color"></cryptoicon>
+    <cryptoicon v-if="isSymbolKnown" :symbol="symbol" :size="size" :color="color"></cryptoicon>
     <span v-else>{{ symbol }}</span>
   </i>
 </template>
@@ -14,6 +14,11 @@ export default {
   props: {
     currency: {
       type: Object,
+    },
+    size: {
+      type: Number,
+      default: 12,
+      required: false
     }
   },
   data() {

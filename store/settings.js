@@ -6,6 +6,7 @@ const LSK_DARKMODE = 'darkmode'
 const LSK_PAGE_SIZE_TX = 'paging.transaction'
 const LSK_DATE_TIME_FORMAT = 'date.timeFormat'
 const LSK_DATE_FIRST_DAY = 'date.firstDay'
+const LSK_CORS_PROXY = 'cors.proxy'
 
 export const state = () => ({
   locales: i18n.locales,
@@ -19,6 +20,9 @@ export const state = () => ({
   },
   paging: {
     transaction: 5
+  },
+  cors: {
+    proxy: 'https://cors-anywhere.herokuapp.com/'
   }
 })
 
@@ -39,6 +43,9 @@ export const mutations = {
   },
   setDateFirstDay(state, day) {
     state.date.firstDayOfWeek = day
+  },
+  setCorsProxy(state, proxy) {
+    state.cors.proxy = proxy
   },
 }
 
@@ -80,6 +87,12 @@ export const actions = {
             return ctx.commit('setDateFirstDay', day)
           }
         }),
+      this.$localStore.get(STORE_SETTINGS, LSK_CORS_PROXY)
+        .then(proxy => {
+          if(proxy) {
+            return ctx.commit('setCorsProxy', proxy)
+          }
+        }),
     ])
   },
 
@@ -97,11 +110,15 @@ export const actions = {
   },
   setDateTimeFormat(ctx, format) {
     ctx.commit('setDateTimeFormat', format)
-    return this.$localStore.setDateTimeFormat(format)
+    return this.$localStore.set(STORE_SETTINGS, LSK_DATE_TIME_FORMAT, format)
   },
   setDateFirstDay(ctx, day) {
     ctx.commit('setDateFirstDay', day)
-    return this.$localStore.setDateFirstDay(day)
+    return this.$localStore.set(STORE_SETTINGS, LSK_DATE_FIRST_DAY, day)
+  },
+  setCorsProxy(ctx, proxy) {
+    ctx.commit('setCorsProxy', proxy)
+    return this.$localStore.set(STORE_SETTINGS, LSK_CORS_PROXY, proxy)
   },
 
   applyLanguage(ctx, lang) {

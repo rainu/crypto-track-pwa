@@ -68,6 +68,11 @@ export default {
           to: '/wallet'
         },
         {
+          icon: 'mdi-chart-line',
+          title: 'course.title',
+          to: '/course'
+        },
+        {
           icon: 'import_export',
           title: 'backup.title',
           to: '/backup'

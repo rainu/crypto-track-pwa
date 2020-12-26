@@ -56,6 +56,13 @@
   "home": {
     "title": "Übersicht"
   },
+  "course": {
+    "title": "Kursdaten",
+    "amount": "Anzahl:",
+    "last-course": "Letzter Kurs:",
+    "update-all": "Alle Kurse aktualisieren",
+    "update-error": "Aktualisierung fehlgeschlagen: {err}"
+  },
   "transaction": {
     "title": "Transaktion",
     "edit-success": "Die Transaktion wurde erfolgreich aktualisiert.",
@@ -169,6 +176,9 @@
   },
   "settings": {
     "title": "Einstellungen",
+    "crawler": {
+      "cors-proxy": "CORS Proxy"
+    },
     "date": {
       "time-format": {
         "title": "Zeitformat",

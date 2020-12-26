@@ -56,6 +56,13 @@
   "home": {
     "title": "Overview"
   },
+  "course": {
+    "title": "Course data",
+    "amount": "Amount:",
+    "last-course": "Last course:",
+    "update-all": "Update all courses",
+    "update-error": "Update failed: {err}"
+  },
   "transaction": {
     "title": "Transaction",
     "edit-success": "The transaction was successful saved.",
@@ -169,6 +176,9 @@
   },
   "settings": {
     "title": "Settings",
+    "crawler": {
+      "cors-proxy": "CORS Proxy"
+    },
     "theme": {
       "dark": "Darkmode"
     },
