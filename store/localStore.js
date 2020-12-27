@@ -8,39 +8,27 @@ export const STORE_CURRENCIES = 'currencies'
 export const STORE_WALLETS = 'wallets'
 export const STORE_TRANSACTIONS = 'transactions'
 export const STORE_COURSES = 'courses'
+export const STORE_BALANCES = 'balances'
+export const STORE_TOTALS = 'totals'
+
+const createInstance = (stores, storeName) => {
+  stores[storeName] = localforage.createInstance({
+    name: process.env.appName,
+    version: 1.0,
+    storeName: storeName, // Should be alphanumeric, with underscores.
+  })
+}
 
 export function newLocalStore() {
   const stores = {}
-  stores[STORE_META] = localforage.createInstance({
-    name: process.env.appName,
-    version: 1.0,
-    storeName: STORE_META, // Should be alphanumeric, with underscores.
-  })
-  stores[STORE_SETTINGS] = localforage.createInstance({
-    name: process.env.appName,
-    version: 1.0,
-    storeName: STORE_SETTINGS, // Should be alphanumeric, with underscores.
-  })
-  stores[STORE_CURRENCIES] = localforage.createInstance({
-    name: process.env.appName,
-    version: 1.0,
-    storeName: STORE_CURRENCIES, // Should be alphanumeric, with underscores.
-  })
-  stores[STORE_WALLETS] = localforage.createInstance({
-    name: process.env.appName,
-    version: 1.0,
-    storeName: STORE_WALLETS, // Should be alphanumeric, with underscores.
-  })
-  stores[STORE_TRANSACTIONS] = localforage.createInstance({
-    name: process.env.appName,
-    version: 1.0,
-    storeName: STORE_TRANSACTIONS, // Should be alphanumeric, with underscores.
-  })
-  stores[STORE_COURSES] = localforage.createInstance({
-    name: process.env.appName,
-    version: 1.0,
-    storeName: STORE_COURSES, // Should be alphanumeric, with underscores.
-  })
+  createInstance(stores, STORE_META)
+  createInstance(stores, STORE_SETTINGS)
+  createInstance(stores, STORE_CURRENCIES)
+  createInstance(stores, STORE_WALLETS)
+  createInstance(stores, STORE_TRANSACTIONS)
+  createInstance(stores, STORE_COURSES)
+  createInstance(stores, STORE_BALANCES)
+  createInstance(stores, STORE_TOTALS)
 
   const $migrate = () => {
     const KEY_VERSION = 'version.store'

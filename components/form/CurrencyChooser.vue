@@ -6,7 +6,7 @@
     :error="error"
     item-value="value"
     item-text="label"
-    clearable
+    :clearable="clearable"
     @change="onSelectCurrency">
 
     <template v-slot:item="data" >
@@ -42,6 +42,11 @@ export default {
       },
       required: false,
       type: Object
+    },
+    clearable: {
+      required: false,
+      default: true,
+      type: Boolean,
     },
     error: {
       required: false,

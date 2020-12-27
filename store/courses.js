@@ -1,6 +1,8 @@
 import * as dateFN from 'date-fns'
 import * as cmc from '@/crawler/crypto/coinmarketcap'
 import * as forex from '@/crawler/fiat/forexsb'
+import {STORE_META} from "@/store/localStore";
+import {LSK_COURSE_STORES_PREFIX} from "@/store/courseStore";
 
 const cryptoCurrencyBirthday = dateFN.parseISO('2009-01-03T00:00:00')
 
@@ -38,6 +40,48 @@ const actions = {
   },
   getCourse(ctx, course){
     return this.$courseStore.get(course.from, course.to, genCourseKey(course))
+  },
+  getHistoricalCourse(ctx, {course, backSteps = 0}){
+    //we have to fill gaps (at the weekend/hollidays we have no courses)
+    return this.$courseStore.get(course.from, course.to, genCourseKey(course))
+      .then(value => {
+        if(value) {
+          return Promise.resolve(value)
+        }
+
+        if(backSteps >= 7 || backSteps < 0) {
+          //go MAX 7 days back
+          return Promise.resolve(value)
+        }
+
+        //go one day back
+        let nextCourse = {...course}
+        nextCourse.date = dateFN.addDays(nextCourse.date, -1)
+
+        return ctx.dispatch('getHistoricalCourse', {course: nextCourse, backSteps: backSteps + 1})
+          .then(value => {
+            //we have to set the original date instead the "real" date
+            if(value) value.date = course.date
+            return value
+          })
+      })
+  },
+  getPairs(ctx) {
+    return this.$localStore.getKeys(STORE_META)
+      .then(keys => keys.filter(k => k.startsWith(LSK_COURSE_STORES_PREFIX)))
+      .then(keys => keys.map(k => {
+        let rawPair = k.split(LSK_COURSE_STORES_PREFIX)[1]
+        let rawPairSplit = rawPair.split('__')
+        let rawFrom = rawPairSplit[0]
+        let rawFromSplit = rawFrom.split('_')
+        let rawTo = rawPairSplit[1]
+        let rawToSplit = rawTo.split('_')
+
+        return {
+          from: {type: rawFromSplit[0], name: rawFromSplit[1]},
+          to: {type: rawToSplit[0], name: rawToSplit[1]},
+        }
+      }))
   },
   saveCourse(ctx, course) {
     return this.$courseStore.set(course.from, course.to, genCourseKey(course), course)

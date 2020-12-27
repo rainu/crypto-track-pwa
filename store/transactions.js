@@ -69,6 +69,14 @@ const getters = {
 
     currencies = uniq(currencies);
     return currencies;
+  },
+  firstTransactionDate: (state) => () => {
+    if(!state.transactions || state.transactions.length === 0) return null
+
+    let tx = [...state.transactions]
+    tx.sort((a, b) => (new Date(a.date) - new Date(b.date)))
+
+    return new Date(tx[0].date)
   }
 }
 

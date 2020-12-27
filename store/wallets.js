@@ -1,4 +1,4 @@
-import {calculateBalances, addToBalance} from '@/functions/balances'
+import {calculateBalances, addToBalance} from '@/functions/balances_helper'
 import {STORE_WALLETS} from "./localStore";
 
 const state = () => ({

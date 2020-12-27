@@ -7,6 +7,7 @@ const LSK_PAGE_SIZE_TX = 'paging.transaction'
 const LSK_DATE_TIME_FORMAT = 'date.timeFormat'
 const LSK_DATE_FIRST_DAY = 'date.firstDay'
 const LSK_CORS_PROXY = 'cors.proxy'
+const LSK_BALANCE_DST_CURRENCY = 'balance.dst-currency'
 
 export const state = () => ({
   locales: i18n.locales,
@@ -20,6 +21,9 @@ export const state = () => ({
   },
   paging: {
     transaction: 5
+  },
+  balances: {
+    dstCurrency: { type: 'fiat', name: 'USD' }
   },
   cors: {
     proxy: 'https://cors-anywhere.herokuapp.com/'
@@ -47,6 +51,9 @@ export const mutations = {
   setCorsProxy(state, proxy) {
     state.cors.proxy = proxy
   },
+  setBalanceDestinationCurrency(state, currency) {
+    state.balances.dstCurrency = currency
+  }
 }
 
 export const getters = {}
@@ -93,6 +100,12 @@ export const actions = {
             return ctx.commit('setCorsProxy', proxy)
           }
         }),
+      this.$localStore.get(STORE_SETTINGS, LSK_BALANCE_DST_CURRENCY)
+        .then(currency => {
+          if(currency) {
+            return ctx.commit('setBalanceDestinationCurrency', currency)
+          }
+        }),
     ])
   },
 
@@ -119,6 +132,10 @@ export const actions = {
   setCorsProxy(ctx, proxy) {
     ctx.commit('setCorsProxy', proxy)
     return this.$localStore.set(STORE_SETTINGS, LSK_CORS_PROXY, proxy)
+  },
+  setBalanceDestinationCurrency(ctx, currency) {
+    ctx.commit('setBalanceDestinationCurrency', currency)
+    return this.$localStore.set(STORE_SETTINGS, LSK_BALANCE_DST_CURRENCY, currency)
   },
 
   applyLanguage(ctx, lang) {

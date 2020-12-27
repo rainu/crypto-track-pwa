@@ -44,6 +44,9 @@
     "currency": "Währung",
     "wallet": "Wallet"
   },
+  "balances": {
+    "calculate": "Berechnung starten"
+  },
   "navigation": {
     "home": "Übersicht",
     "settings": "Einstellungen",

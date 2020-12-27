@@ -2,7 +2,7 @@ import {STORE_META} from "./localStore";
 import localforage from "localforage";
 import migrationSteps from "./migration/courseStore";
 
-const LSK_COURSE_STORES_PRE = "course.stores."
+export const LSK_COURSE_STORES_PREFIX = "course.stores."
 const KEY_VERSION = 'version'
 
 const createInstance = (storeName) => {
@@ -12,7 +12,6 @@ const createInstance = (storeName) => {
     storeName: storeName, // Should be alphanumeric, with underscores.
   })
 }
-
 
 export function newCourseStore($localStore) {
   const stores = {}
@@ -26,12 +25,12 @@ export function newCourseStore($localStore) {
       stores[storeName] = createInstance(storeName)
 
       promise = $localStore.getKeys(STORE_META)
-        .then(keys => keys.includes(`${LSK_COURSE_STORES_PRE}${storeName}`))
+        .then(keys => keys.includes(`${LSK_COURSE_STORES_PREFIX}${storeName}`))
         .then(exists => {
           if(!exists){
             let value = {}
             value[KEY_VERSION] = migrationSteps.length
-            return $localStore.set(STORE_META, `${LSK_COURSE_STORES_PRE}${storeName}`, value)
+            return $localStore.set(STORE_META, `${LSK_COURSE_STORES_PREFIX}${storeName}`, value)
           }
           return Promise.resolve()
         })
@@ -42,7 +41,7 @@ export function newCourseStore($localStore) {
 
   const $migrate = (storeName) => {
     //get the current schema version
-    return $localStore.get(STORE_META, `${LSK_COURSE_STORES_PRE}${storeName}`)
+    return $localStore.get(STORE_META, `${LSK_COURSE_STORES_PREFIX}${storeName}`)
       .then(storeMetaData => {
         let currentMigrationVersion = storeMetaData && storeMetaData[KEY_VERSION] ? storeMetaData[KEY_VERSION] : 0
 
@@ -54,7 +53,7 @@ export function newCourseStore($localStore) {
           })
           .then(() => {
             storeMetaData[KEY_VERSION] += 1
-            return $localStore.set(STORE_META, `${LSK_COURSE_STORES_PRE}${storeName}`, storeMetaData)
+            return $localStore.set(STORE_META, `${LSK_COURSE_STORES_PREFIX}${storeName}`, storeMetaData)
           })
         }
 
@@ -65,8 +64,8 @@ export function newCourseStore($localStore) {
   return {
     ready(){
       return $localStore.getKeys(STORE_META)
-        .then(keys => keys.filter(k => k.startsWith(LSK_COURSE_STORES_PRE)))
-        .then(keys => keys.map(k => k.split(LSK_COURSE_STORES_PRE)[1]))
+        .then(keys => keys.filter(k => k.startsWith(LSK_COURSE_STORES_PREFIX)))
+        .then(keys => keys.map(k => k.split(LSK_COURSE_STORES_PREFIX)[1]))
         .then(courseStoreNames => courseStoreNames.map(storeName => {
           stores[storeName] = createInstance(storeName)
           return stores[storeName].ready().then(() => $migrate(storeName))
