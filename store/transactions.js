@@ -1,11 +1,11 @@
 import {uniq} from '@/functions/currencies'
 import {STORE_TRANSACTIONS} from "@/store/localStore";
 
-const state = () => ({
+export const state = () => ({
   transactions: [],
 })
 
-const mutations = {
+export const mutations = {
   clearTransactions(state){
     state.transactions.length = 0
   },
@@ -31,7 +31,7 @@ const mutations = {
   }
 }
 
-const actions = {
+export const actions = {
   init(ctx){
     return Promise.all([
       this.$localStore.getAll(STORE_TRANSACTIONS)
@@ -56,7 +56,7 @@ const actions = {
   },
 }
 
-const getters = {
+export const getters = {
   byId: (state) => (id) => {
     return state.transactions.find(t => t.id === id)
   },

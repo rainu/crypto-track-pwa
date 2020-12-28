@@ -1,3 +1,4 @@
+import Vue from "vue"
 import * as dateFN from 'date-fns'
 import * as cmc from '@/crawler/crypto/coinmarketcap'
 import * as forex from '@/crawler/fiat/forexsb'
@@ -24,7 +25,25 @@ const genSaveFN = (ctx) => (course) => {
   ])
 }
 
-const actions = {
+export const state = () => ({
+  ticker: {}
+})
+
+export const mutations = {
+  setCourse(state, course) {
+    let key = `${course.from.type}_${course.from.name}__${course.to.type}_${course.to.name}`
+    Vue.set(state.ticker, key, course)
+  },
+}
+
+export const getters = {
+  byCourse: (state) => (from, to) => {
+    let key = `${from.type}_${from.name}__${to.type}_${to.name}`
+    return state.ticker[key]
+  },
+}
+
+export const actions = {
   getLastCourseDate(ctx, {from, to}){
     return this.$courseStore.getKeys(from, to)
       .then(keys => {
@@ -114,5 +133,8 @@ const actions = {
 
 export default {
   namespaced: true,
+  state,
+  mutations,
+  getters,
   actions
 }

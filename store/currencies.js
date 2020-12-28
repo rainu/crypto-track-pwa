@@ -11,6 +11,12 @@ export const state = () => ({
 export const mutations = {
   addCurrency(state, currency) {
     Vue.set(state.currencies[currency.type], currency.key, currency)
+
+    if(currency.type === 'crypto' && currency.crawler && currency.crawler.coinmarketcap && currency.crawler.coinmarketcap.id) {
+      this.$webworker.cmcWorker.watchCurrency(currency.crawler.coinmarketcap.id)
+    } else if(currency.type === 'fiat' && currency.crawler && currency.crawler.finnhub && currency.crawler.finnhub.symbol) {
+      this.$webworker.fhWorker.watchCurrency(currency.crawler.finnhub.symbol)
+    }
   },
 }
 

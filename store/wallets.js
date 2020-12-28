@@ -1,11 +1,11 @@
 import {calculateBalances, addToBalance} from '@/functions/balances_helper'
 import {STORE_WALLETS} from "./localStore";
 
-const state = () => ({
+export const state = () => ({
   wallets: [],
 })
 
-const mutations = {
+export const mutations = {
   clearWallets(state){
     state.wallets.length = 0
   },
@@ -31,7 +31,7 @@ const mutations = {
   }
 }
 
-const actions = {
+export const actions = {
   init(ctx){
     return Promise.all([
       this.$localStore.getAll(STORE_WALLETS)
@@ -56,7 +56,7 @@ const actions = {
   },
 }
 
-const getters = {
+export const getters = {
   byId: (state) => (id) => {
     return state.wallets.find(w => w.id === id)
   },

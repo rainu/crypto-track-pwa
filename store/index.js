@@ -6,11 +6,12 @@ import transactions from './transactions'
 import backup from './backup'
 import courses from './courses'
 import balances from './balances'
+import webworker from './webworker'
 
 const createStore = () => {
   return new Vuex.Store({
     modules: {
-      settings, currencies, transactions, wallets, backup, courses, balances
+      settings, currencies, transactions, wallets, backup, courses, balances, webworker
     },
   })
 }

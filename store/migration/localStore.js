@@ -20,4 +20,5 @@ const applyDefaultCurrencies = (stores) => {
 export default [
   applyDefaultCurrencies,
   applyDefaultCurrencies, //two times because there is now crawler information inside (and there was no possibility to add currency into the store via gui!)
+  applyDefaultCurrencies, //three times because there is now new crawler information inside (and there was no possibility to add currency into the store via gui!)
 ]

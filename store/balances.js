@@ -1,8 +1,11 @@
+import Vue from "vue"
 import * as dateFN from 'date-fns'
 import { newBalanceCalculator, newTotalsCalculator } from "@/functions/balanceCalculator";
 import {STORE_BALANCES, STORE_TOTALS} from "@/store/localStore";
 
-const state = () => ({
+export const state = () => ({
+  currentBalances: null,
+  currentTotals: {},
   updateState: {
     balances: {
       current: null,
@@ -15,7 +18,13 @@ const state = () => ({
   }
 })
 
-const mutations = {
+export const mutations = {
+  setCurrentBalances(state, balances) {
+    state.currentBalances = balances
+  },
+  setCurrentTotal(state, {dstCurrency, amount}) {
+    Vue.set(state.currentTotals, `${dstCurrency.type}_${dstCurrency.name}`, amount)
+  },
   setUpdateBalancesState(state, {current, total}) {
     state.updateState.balances.current = current
     state.updateState.balances.total = total
@@ -26,7 +35,75 @@ const mutations = {
   },
 }
 
-const actions = {
+export const getters = {
+  currentBalance: (state) => (currency) => {
+    let found = state.currentBalances.filter(b => b.currency.type === currency.type && b.currency.name === currency.name)
+
+    if(found.length === 0) return null
+
+    return found[0]
+  }
+}
+
+export const actions = {
+  init(ctx){
+    return ctx.dispatch('calcCurrentBalances')
+      .then(() => ctx.dispatch('calcCurrentTotals', ctx.rootState.settings.balances.dstCurrency))
+  },
+  calcCurrentBalances(ctx){
+    const saveBalancesAt = (balances, at) => {
+      ctx.commit('setCurrentBalances', balances)
+      return Promise.resolve()
+    }
+    const balanceCalc = newBalanceCalculator(saveBalancesAt)
+
+    let now = new Date()
+    return balanceCalc.calcHistoricalBalances(
+      ctx.rootState.transactions.transactions,
+      now,
+      now
+    )
+  },
+  calcCurrentTotals(ctx, dstCurrency){
+    const getHistoricalCourse = (from, to, date) => {
+      let currentValue = ctx.rootGetters['courses/byCourse'](from, to)
+      if(currentValue) {
+        return Promise.resolve({
+          //the calculator expect the course value at field "close" -> so here we remap it
+          close: currentValue.value
+        })
+      }
+
+      //there is no ticker value available right now -> use the latest historical one
+      return ctx.dispatch('courses/getHistoricalCourse', {course: {from, to, date}}, { root: true })
+    }
+
+    const getHistoricalBalances = (date) => {
+      if(ctx.rootState.balances.currentBalances) {
+        return Promise.resolve(ctx.rootState.balances.currentBalances)
+      }
+
+      //there is no current balances available right now -> use the latest historical one
+      return ctx.dispatch('getHistoricalBalancesAt', date)
+    }
+    const saveTotalAmountAt = (amount, dstCurrency, date) => {
+      ctx.commit('setCurrentTotal', {dstCurrency, amount})
+      return Promise.resolve()
+    }
+
+    const totalsCalc = newTotalsCalculator(getHistoricalCourse, getHistoricalBalances, saveTotalAmountAt)
+
+    let now = new Date()
+    return ctx.dispatch('courses/getPairs', null, { root: true })
+      .then(pairs => {
+        return totalsCalc.calcHistoricalTotals(
+          pairs,
+          dstCurrency,
+          now,
+          now,
+        )
+      })
+  },
   getLastBalancesCalcDate(ctx){
     return this.$localStore.getKeys(STORE_BALANCES)
       .then(keys => keys ? keys.sort()[keys.length - 1] : null)
@@ -99,5 +176,6 @@ export default {
   namespaced: true,
   state,
   mutations,
+  getters,
   actions,
 }

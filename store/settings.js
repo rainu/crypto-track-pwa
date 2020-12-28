@@ -8,6 +8,7 @@ const LSK_DATE_TIME_FORMAT = 'date.timeFormat'
 const LSK_DATE_FIRST_DAY = 'date.firstDay'
 const LSK_CORS_PROXY = 'cors.proxy'
 const LSK_BALANCE_DST_CURRENCY = 'balance.dst-currency'
+const LSK_BALANCE_RLT_RECALC = 'balance.realtime-recalculation'
 
 export const state = () => ({
   locales: i18n.locales,
@@ -23,7 +24,8 @@ export const state = () => ({
     transaction: 5
   },
   balances: {
-    dstCurrency: { type: 'fiat', name: 'USD' }
+    dstCurrency: { type: 'fiat', name: 'USD' },
+    realtimeRecalculation: true,
   },
   cors: {
     proxy: 'https://cors-anywhere.herokuapp.com/'
@@ -53,6 +55,9 @@ export const mutations = {
   },
   setBalanceDestinationCurrency(state, currency) {
     state.balances.dstCurrency = currency
+  },
+  setBalanceRealtimeRecalculation(state, realtimeRecalculation) {
+    state.balances.realtimeRecalculation = realtimeRecalculation
   }
 }
 
@@ -106,6 +111,12 @@ export const actions = {
             return ctx.commit('setBalanceDestinationCurrency', currency)
           }
         }),
+      this.$localStore.get(STORE_SETTINGS, LSK_BALANCE_RLT_RECALC)
+        .then(rtlRecalc => {
+          if(rtlRecalc !== null) {
+            return ctx.commit('setBalanceRealtimeRecalculation', rtlRecalc)
+          }
+        }),
     ])
   },
 
@@ -136,6 +147,10 @@ export const actions = {
   setBalanceDestinationCurrency(ctx, currency) {
     ctx.commit('setBalanceDestinationCurrency', currency)
     return this.$localStore.set(STORE_SETTINGS, LSK_BALANCE_DST_CURRENCY, currency)
+  },
+  setBalanceRealtimeRecalculation(ctx, rtlRecalc) {
+    ctx.commit('setBalanceRealtimeRecalculation', rtlRecalc)
+    return this.$localStore.set(STORE_SETTINGS, LSK_BALANCE_RLT_RECALC, rtlRecalc)
   },
 
   applyLanguage(ctx, lang) {

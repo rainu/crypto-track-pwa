@@ -45,7 +45,10 @@
     "wallet": "Wallet"
   },
   "balances": {
-    "calculate": "Berechnung starten"
+    "calculate": "Berechnung starten",
+    "total-currency": "Gesamtwert aller Währungen:",
+    "total-coins": "Gesamtwert aller Coins:",
+    "total-value": "Account Gesamtwert:"
   },
   "navigation": {
     "home": "Übersicht",
@@ -178,6 +181,7 @@
     "crawler": {
       "cors-proxy": "CORS Proxy"
     },
+    "realtime-calculation": "Echtzeit (Neu-)Berechnung",
     "date": {
       "time-format": {
         "title": "Zeitformat",

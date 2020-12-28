@@ -10,6 +10,9 @@ export default {
         forexsb: {
           from: 'EUR',
           to: 'USD'
+        },
+        finnhub: {
+          symbol: "OANDA:EUR_USD"
         }
       }
     },
@@ -30,6 +33,7 @@ export default {
       },
       crawler: {
         coinmarketcap: {
+          id: 1,
           slug: "bitcoin"
         }
       }
@@ -42,6 +46,7 @@ export default {
       },
       crawler: {
         coinmarketcap: {
+          id: 1027,
           slug: "ethereum"
         }
       }
@@ -54,6 +59,7 @@ export default {
       },
       crawler: {
         coinmarketcap: {
+          id: 1831,
           slug: "bitcoin-cash"
         }
       }
@@ -66,6 +72,7 @@ export default {
       },
       crawler: {
         coinmarketcap: {
+          id: 1808,
           slug: "omg"
         }
       }
@@ -78,6 +85,7 @@ export default {
       },
       crawler: {
         coinmarketcap: {
+          id: 2198,
           slug: "viuly"
         }
       }
@@ -90,6 +98,7 @@ export default {
       },
       crawler: {
         coinmarketcap: {
+          id: 1758,
           slug: "tenx"
         }
       }
