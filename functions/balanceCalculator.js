@@ -202,14 +202,19 @@ export const newTotalsCalculator = ($getHistoricalCourse, $getHistoricalBalances
   }
 
   const _calcTotalBalanceAt = (balances, pairs, date, dstCurrency) => {
-    let amount = 0;
+    let amounts = {total: 0}
     let allPromises = []
     for(let balance of balances) {
       let currency = balance.currency
       if(currency.type !== dstCurrency.type || currency.name !== dstCurrency.name) {
         let p = _calcHistoricalBalance(pairs, balance.amount, currency, dstCurrency, date)
-          .then((curAmount) => {
-            amount += curAmount
+          .then(curAmount => {
+            if(!amounts[currency.type]) {
+              amounts[currency.type] = {}
+            }
+
+            amounts[currency.type][currency.name] = curAmount
+            amounts.total += curAmount
           })
         allPromises.push(p)
       }
@@ -217,7 +222,7 @@ export const newTotalsCalculator = ($getHistoricalCourse, $getHistoricalBalances
 
     return Promise.all(allPromises)
       .then(() => {
-        return amount
+        return amounts
       })
   }
 

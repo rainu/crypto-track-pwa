@@ -128,7 +128,7 @@ export const actions = {
   },
   updateBalances(ctx){
     const saveBalancesAt = (balances, at) => ctx.dispatch('saveBalancesAt', {balances, at})
-    const progressFN = (current, total) => ctx.commit('setUpdateBalancesState', {current, total})
+    const progressFN = (current, total) => ctx.commit('setUpdateBalancesState', {current: ctx.state.updateState.balances.current + 1, total})
 
     const balanceCalc = newBalanceCalculator(saveBalancesAt)
 
@@ -150,7 +150,7 @@ export const actions = {
     const getHistoricalCourse = (from, to, date) => ctx.dispatch('courses/getHistoricalCourse', {course: {from, to, date}}, { root: true })
     const getHistoricalBalances = (date) => ctx.dispatch('getHistoricalBalancesAt', date)
     const saveTotalAmountAt = (amount, dstCurrency, date) => ctx.dispatch('saveTotalAmountAt', {amount, dstCurrency, date})
-    const progressFN = (current, total) => ctx.commit('setUpdateTotalsState', {current, total})
+    const progressFN = (current, total) => ctx.commit('setUpdateTotalsState', {current: ctx.state.updateState.totals.current + 1, total})
 
     const totalsCalc = newTotalsCalculator(getHistoricalCourse, getHistoricalBalances, saveTotalAmountAt)
 

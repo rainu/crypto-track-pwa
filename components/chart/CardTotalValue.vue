@@ -45,7 +45,7 @@ export default {
       }
 
       let key = `${this.defaultDstCurrency.type}_${this.defaultDstCurrency.name}`
-      return this.currentTotals[key] ? this.currentTotals[key] : 0
+      return this.currentTotals[key] ? this.currentTotals[key].total : 0
     },
     totalValue(){
       return this.currentTotal + this.currencyBalance
