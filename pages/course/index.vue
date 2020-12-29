@@ -188,7 +188,7 @@ export default {
     onUpdateCrypto(currency) {
       Vue.set(this.progressCryptoCourses, currency.name, true)
       Vue.delete(this.errorCryptoCourses, currency.name)
-      return this.updateCrypto({symbol: currency.name, slug: currency.crawler.coinmarketcap.slug})
+      return this.updateCrypto({symbol: currency.name, id: currency.crawler.coinmarketcap.id})
         .then(() => this.updateLastCryptoCourseDate(currency.name))
         .then(() => this.updateAmountCryptoCourse(currency.name))
         .catch(err => Vue.set(this.errorCryptoCourses, currency.name, err))

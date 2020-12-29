@@ -117,7 +117,7 @@ export const actions = {
           .crawl(symbolFrom, symbolTo, lastDate || cryptoCurrencyBirthday)
       })
   },
-  updateCrypto(ctx, {symbol, slug}){
+  updateCrypto(ctx, {symbol, id}){
     const reqFN = genRequestFN(ctx, this.$axios)
     const saveFN = genSaveFN(ctx)
 
@@ -126,7 +126,7 @@ export const actions = {
         to: { type: 'fiat', name: 'USD' }
       }).then(lastDate => {
         return cmc.newCrawler(reqFN, saveFN)
-          .crawl(symbol, slug, lastDate || cryptoCurrencyBirthday)
+          .crawl(symbol, id, lastDate || cryptoCurrencyBirthday)
       })
   }
 }

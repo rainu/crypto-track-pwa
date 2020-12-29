@@ -1,4 +1,3 @@
-import cheerio from 'cheerio'
 import * as dateFN from 'date-fns'
 
 const fakeSave = (course) => {
@@ -10,11 +9,7 @@ const fakeSave = (course) => {
 
 export const newCrawler = (requestFN, saveFN = fakeSave) => {
   const parse = (symbol, content) => {
-    const $ = cheerio.load(content)
-
-    //the whole data is stored inside a script tag
-    let data = JSON.parse($('#__NEXT_DATA__').get()[0].children[0].data)
-    data = Object.values(data.props.initialState.cryptocurrency.ohlcvHistorical)[0].quotes
+    let data = content.data.quotes
     data = data.map(q => {
       let course = q.quote.USD
       return {
@@ -38,10 +33,10 @@ export const newCrawler = (requestFN, saveFN = fakeSave) => {
   }
 
   return {
-    crawl(symbol, slug, startDate){
-      const start = dateFN.format(startDate, 'yyyyMMdd')
-      const end = dateFN.format(dateFN.addDays(new Date(), -1), 'yyyyMMdd')
-      const url = `https://coinmarketcap.com/currencies/${slug}/historical-data/?start=${start}&end=${end}`
+    crawl(symbol, id, startDate){
+      const start = dateFN.getUnixTime(startDate)
+      const end = dateFN.getUnixTime(dateFN.addDays(new Date(), -1))
+      const url = `https://web-api.coinmarketcap.com/v1/cryptocurrency/ohlcv/historical?id=${id}&convert=USD&time_start=${start}&time_end=${end}`
 
       return requestFN(url)
         .then((resp) => parse(symbol, resp.data))
