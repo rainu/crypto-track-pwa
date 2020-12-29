@@ -50,6 +50,16 @@
     "total-coins": "Total Value of all Coins:",
     "total-value": "Total Account Value:"
   },
+  "chart": {
+    "balance": {
+      "title": "Value per Currency",
+      "data-footer": "({percent}% of Total)"
+    },
+    "range": {
+      "from": "From",
+      "until": "Until"
+    }
+  },
   "navigation": {
     "home": "Overview",
     "settings": "Settings",

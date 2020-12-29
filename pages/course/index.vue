@@ -77,6 +77,10 @@
       </template>
     </v-list>
 
+    <v-card>
+      <CourseChart />
+    </v-card>
+
     <v-footer app class="pa-0">
       <v-toolbar dense>
 
@@ -98,9 +102,10 @@ import Vue from "vue"
 import {mapActions, mapState} from "vuex";
 import * as dateFN from 'date-fns'
 import CurrencyIcon from "@/components/CurrencyIcon";
+import CourseChart from "@/components/chart/CourseChart";
 
 export default {
-  components: {CurrencyIcon},
+  components: {CourseChart, CurrencyIcon},
   data(){
     return {
       lastFiatCourses: {},

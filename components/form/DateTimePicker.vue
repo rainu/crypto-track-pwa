@@ -113,7 +113,7 @@ export default {
     },
   },
   methods: {
-    recalcNoteDate() {
+    recalcDate() {
       let result = dateFN.parse(this.date.value + this.time.value, `yyyy-MM-ddHH:mm`, new Date())
       if (isNaN(result.getDate())) {
         result = new Date()
@@ -129,11 +129,11 @@ export default {
       this.datetime.value = dateFN.format(this.value, 'HH:mm')
     },
     'date.value'() {
-      this.recalcNoteDate()
+      this.recalcDate()
       this.$emit('input', this.datetime)
     },
     'time.value'() {
-      this.recalcNoteDate()
+      this.recalcDate()
       this.$emit('input', this.datetime)
     },
   }

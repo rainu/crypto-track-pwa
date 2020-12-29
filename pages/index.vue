@@ -18,6 +18,14 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col cols="12" sm="6">
+        <BalanceChart :currency="defaultDstCurrency" />
+      </v-col>
+      <v-col cols="12" sm="6">
+      </v-col>
+    </v-row>
+
     <BalancesCalculator />
   </v-container>
 </template>
@@ -29,9 +37,13 @@ import CardTotalCoins from "@/components/chart/CardTotalCoins";
 import CardTotalCurrency from "@/components/chart/CardTotalCurrency";
 import {mapState} from "vuex";
 import CardTotalValue from "@/components/chart/CardTotalValue";
+import BalanceChart from "@/components/chart/BalanceChart";
+import CourseChart from "@/components/chart/CourseChart";
 
 export default {
   components: {
+    CourseChart,
+    BalanceChart,
     CardTotalValue,
     CardTotalCurrency, CardTotalCoins, SettingsRealtimeRecalculation, BalancesCalculator},
   computed: {
