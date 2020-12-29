@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{877:function(n,t,e){"use strict";e.r(t);var r={},c=e(29),l=e(36),o=e.n(l),w=e(598),component=Object(c.a)(r,(function(){var n=this.$createElement;return(this._self._c||n)("v-row",{attrs:{justify:"center",align:"center"}})}),[],!1,null,null,null);t.default=component.exports;o()(component,{VRow:w.a})}}]);
