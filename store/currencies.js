@@ -20,7 +20,15 @@ export const mutations = {
   },
 }
 
-export const getters = {}
+export const getters = {
+  getCurrency: (state) => (type, name) => {
+    if(state.currencies && state.currencies[type]) {
+      return state.currencies[type][name]
+    }
+
+    return null
+  }
+}
 
 export const actions = {
   init(ctx) {

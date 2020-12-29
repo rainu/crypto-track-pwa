@@ -46,9 +46,9 @@
   },
   "balances": {
     "calculate": "Start calculation",
-    "total-currency": "Total Value of all Currencies:",
-    "total-coins": "Total Value of all Coins:",
-    "total-value": "Total Account Value:"
+    "total-currency": "Total Value of all Currencies",
+    "total-coins": "Total Value of all Coins",
+    "total-value": "Total Account Value"
   },
   "chart": {
     "balance": {

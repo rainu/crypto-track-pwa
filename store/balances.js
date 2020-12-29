@@ -122,6 +122,10 @@ export const actions = {
       .then(key => key ? key.split('__')[0] : null)
       .then(rawDate => rawDate ? dateFN.parse(rawDate, 'yyyy_MM_dd', new Date()): null)
   },
+  getHistoricalTotalsAt(ctx, {dstCurrency, at}) {
+    let key = `${dateFN.format(at, 'yyyy_MM_dd')}__${dstCurrency.type}_${dstCurrency.name}`
+    return this.$localStore.get(STORE_TOTALS, key)
+  },
   saveTotalAmountAt(ctx, {amount, dstCurrency, date}){
     let key = `${dateFN.format(date, 'yyyy_MM_dd')}__${dstCurrency.type}_${dstCurrency.name}`
     return this.$localStore.set(STORE_TOTALS, key, amount)

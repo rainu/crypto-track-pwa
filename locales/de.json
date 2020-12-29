@@ -46,9 +46,9 @@
   },
   "balances": {
     "calculate": "Berechnung starten",
-    "total-currency": "Gesamtwert aller Währungen:",
-    "total-coins": "Gesamtwert aller Coins:",
-    "total-value": "Account Gesamtwert:"
+    "total-currency": "Gesamtwert aller Währungen",
+    "total-coins": "Gesamtwert aller Coins",
+    "total-value": "Account Gesamtwert"
   },
   "chart": {
     "balance": {

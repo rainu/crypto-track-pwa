@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>{{ $t('balances.total-currency') }}</v-card-title>
+    <v-card-title>{{ $t('balances.total-currency') }}:</v-card-title>
     <v-card-text>
       <strong>
         <CurrencyAmount :amount="balance" :currency="currency" />
