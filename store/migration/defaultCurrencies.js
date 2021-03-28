@@ -102,6 +102,19 @@ export default {
           slug: "tenx"
         }
       }
+    },
+    XMR: {
+      label: "Monero",
+      factor: 1E-12,
+      format: {
+        numeral: "0,0.[000000000000]"
+      },
+      crawler: {
+        coinmarketcap: {
+          id: 328,
+          slug: "monero"
+        }
+      }
     }
   }
 }
