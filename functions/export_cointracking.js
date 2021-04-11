@@ -95,7 +95,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     }]
   },
   'transfer': (tx) => {
@@ -112,7 +112,7 @@ let handleMap = {
         group: tx.data.details.group,
       },
       comment: tx.data.details.comment,
-      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     },{
       type: 'Deposit',
       buy: {
@@ -125,7 +125,7 @@ let handleMap = {
         group: tx.data.details.group,
       },
       comment: tx.data.details.comment,
-      date:dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date:dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     }]
   },
   'spent': (tx) => {
@@ -143,7 +143,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     }]
   },
   'giftIn': (tx) => {
@@ -161,7 +161,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     }]
   },
   'giftOut': (tx) => {
@@ -179,7 +179,7 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     }]
   },
   'lost': (tx) => {
@@ -197,10 +197,28 @@ let handleMap = {
       },
       counter: extractCounterValue(tx),
       comment: tx.data.details.comment,
-      date: dateFN.format(tx.date, 'yyyy-MM-dd HH:mm')
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
     }]
   },
-  'stolen': (tx) => this.lost(tx)
+  'stolen': (tx) => this.lost(tx),
+  'income': (tx) => {
+    return [{
+      type: 'Income',
+      buy: {
+        value: tx.data.in.amount,
+        currency: tx.data.in.currency.name,
+      },
+      fee: extractFee(tx),
+      exchange: tx.data.details.exchange,
+      trade: {
+        id: tx.data.details.comment,
+        group: tx.data.details.group,
+      },
+      counter: extractCounterValue(tx),
+      comment: tx.data.details.comment,
+      date: dateFN.format(dateFN.parseISO(tx.date), 'yyyy-MM-dd HH:mm')
+    }]
+  },
 }
 
 export const exportCointracking = (transactions) => {

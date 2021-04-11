@@ -44,7 +44,7 @@ export default {
         link.click();
       }).catch(err => {
         this.snackbar.error = true
-        this.exportError = err.Error
+        this.exportError = err.Error || err
       })
     }
   }
