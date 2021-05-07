@@ -115,6 +115,45 @@ export default {
           slug: "monero"
         }
       }
+    },
+    DOGE: {
+      label: "Dogecoin",
+      factor: 1E-8,
+      format: {
+        numeral: "0,0.[00000000]"
+      },
+      crawler: {
+        coinmarketcap: {
+          id: 74,
+          slug: "dogecoin"
+        }
+      }
+    },
+    DOT: {
+      label: "Polkadot",
+      factor: 1E-8,
+      format: {
+        numeral: "0,0.[00000000]"
+      },
+      crawler: {
+        coinmarketcap: {
+          id: 6636,
+          slug: "polkadot-new"
+        }
+      }
+    },
+    ADA: {
+      label: "Cardano",
+      factor: 1E-8,
+      format: {
+        numeral: "0,0.[00000000]"
+      },
+      crawler: {
+        coinmarketcap: {
+          id: 2010,
+          slug: "cardano"
+        }
+      }
     }
   }
 }
