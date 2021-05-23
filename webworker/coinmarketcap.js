@@ -23,6 +23,11 @@ const subscribeCurrencies = () => {
 }
 
 export const watchCurrency = (currencyId) => {
+  if(watchedCurrencies.hasOwnProperty(currencyId)) {
+    //already watched
+    return
+  }
+
   watchedCurrencies[currencyId] = true
 
   if (!socket) {

@@ -75,6 +75,36 @@
     "update-all": "Alle Kurse aktualisieren",
     "update-error": "Aktualisierung fehlgeschlagen: {err}"
   },
+  "currency": {
+    "title": "Währung",
+    "key": "Kürzel",
+    "name": "Name",
+    "factor": "Genauigkeit",
+    "new": {
+      "crypto": "Crypto",
+      "fiat": "Fiat"
+    },
+    "crawler": {
+      "coinmarketcap": {
+        "id": "Interne id von Coinmarketcap.com",
+        "slug": "URL-Teil von Coinmarketcap.com"
+      },
+      "forexsb": {
+        "from": "Forexsb Startsymbol",
+        "to": "Forexsb Zielsymbol"
+      },
+      "finnhub": {
+        "symbol": "Symbol von Finnhub.io"
+      }
+    },
+    "delete-question": {
+      "title": "Wollen Sie wirklich die folgende Währung löschen?",
+      "label": "Name der Währung",
+      "name": "Kürzel der Währung"
+    },
+    "save-error": "Die Währung konnte nicht gespeichert werden!",
+    "edit-success": "Die Währung wurde erfolgreich aktualisiert."
+  },
   "transaction": {
     "title": "Transaktion",
     "edit-success": "Die Transaktion wurde erfolgreich aktualisiert.",

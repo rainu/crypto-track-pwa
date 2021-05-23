@@ -75,6 +75,36 @@
     "update-all": "Update all courses",
     "update-error": "Update failed: {err}"
   },
+  "currency": {
+    "title": "Currency",
+    "key": "Symbol",
+    "name": "Name",
+    "factor": "Precision",
+    "new": {
+      "crypto": "Crypto",
+      "fiat": "Fiat"
+    },
+    "crawler": {
+      "coinmarketcap": {
+        "id": "Internal id from Coinmarketcap.com",
+        "slug": "URL-Part from Coinmarketcap.com"
+      },
+      "forexsb": {
+        "from": "Forexsb Startsymbol",
+        "to": "Forexsb Targetsymbol"
+      },
+      "finnhub": {
+        "symbol": "Symbol from Finnhub.io"
+      }
+    },
+    "delete-question": {
+      "title": "Are you sure to delete the following currency?",
+      "label": "Name of the Currency",
+      "name": "Symbol of the Currency"
+    },
+    "save-error": "The currency could not be saved!",
+    "edit-success": "The currency was successful saved."
+  },
   "transaction": {
     "title": "Transaction",
     "edit-success": "The transaction was successful saved.",

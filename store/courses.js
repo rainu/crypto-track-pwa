@@ -128,7 +128,11 @@ export const actions = {
         return cmc.newCrawler(reqFN, saveFN)
           .crawl(symbol, id, lastDate || cryptoCurrencyBirthday)
       })
+  },
+  clearCourses(ctx, {from, to}){
+    return this.$courseStore.clear(from, to)
   }
+
 }
 
 export default {

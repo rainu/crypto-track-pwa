@@ -73,6 +73,11 @@ export default {
           to: '/course'
         },
         {
+          icon: 'mdi-currency-usd',
+          title: 'currency.title',
+          to: '/currency'
+        },
+        {
           icon: 'import_export',
           title: 'backup.title',
           to: '/backup'

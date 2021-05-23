@@ -22,6 +22,11 @@ const subscribeCurrencies = () => {
 }
 
 export const watchCurrency = (symbol) => {
+  if(watchedCurrencies.hasOwnProperty(symbol)) {
+    //already watched
+    return
+  }
+
   watchedCurrencies[symbol] = true
 
   if (!socket) {
