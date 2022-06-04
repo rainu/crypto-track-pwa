@@ -1,6 +1,6 @@
 {
   "name": "crypto-track",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "private": true,
   "scripts": {
     "dev": "COMMIT_HASH=$(git rev-parse HEAD) nuxt",
