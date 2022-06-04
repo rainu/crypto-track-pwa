@@ -1,7 +1,7 @@
 import Vue from "vue"
 import * as dateFN from 'date-fns'
 import * as cmc from '@/crawler/crypto/coinmarketcap'
-import * as forex from '@/crawler/fiat/forexsb'
+import * as ariva from '@/crawler/fiat/ariva'
 import {STORE_META} from "@/store/localStore";
 import {LSK_COURSE_STORES_PREFIX} from "@/store/courseStore";
 
@@ -113,7 +113,7 @@ export const actions = {
         from: { type: 'fiat', name: symbolFrom },
         to: { type: 'fiat', name: symbolTo }
       }).then(lastDate => {
-        return forex.newCrawler(reqFN, saveFN)
+        return ariva.newCrawler(reqFN, saveFN)
           .crawl(symbolFrom, symbolTo, lastDate || cryptoCurrencyBirthday)
       })
   },
