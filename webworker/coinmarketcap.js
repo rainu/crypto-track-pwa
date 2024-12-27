@@ -14,11 +14,11 @@ const onMessage = (event) => {
 
 const subscribeCurrencies = () => {
   socket.send(JSON.stringify({
-    method: "subscribe",
-    id: "price",
-    data: {
-      cryptoIds: Object.keys(watchedCurrencies).map(k => Number.parseInt(k))
-    }
+    method: "RSUBSCRIPTION",
+    params: [
+      "main-site@crypto_price_15s@{}@normal",
+      Object.keys(watchedCurrencies).map(k => Number.parseInt(k)).join(',')
+    ],
   }))
 }
 
@@ -43,7 +43,7 @@ export const start = () => {
   } //already initialised
 
   // Create WebSocket connection.
-  socket = new WebSocket('wss://stream.coinmarketcap.com/price/latest')
+  socket = new WebSocket('wss://push.coinmarketcap.com/ws?device=web&client_source=home_page')
 
   // Listen for messages
   socket.addEventListener('message', onMessage)

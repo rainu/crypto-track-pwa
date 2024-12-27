@@ -1,8 +1,8 @@
 const handleCmcEvent = (ctx, event) => {
-  if(event.type === 'message' && event.message && event.message.id && event.message.id === 'price') {
+  if(event.type === 'message' && event.message && event.message.d && event.message.d.p) {
     //incoming crypto currency price!
     let currencies = Object.values(ctx.rootState.currencies.currencies.crypto)
-      .filter(c => c.crawler.coinmarketcap.id === event.message.d.cr.id)
+      .filter(c => c.crawler.coinmarketcap.id === event.message.d.id)
 
     if(currencies.length > 0) {
       let currency = currencies[0]
@@ -11,7 +11,7 @@ const handleCmcEvent = (ctx, event) => {
         {
           from: {type: 'crypto', name: currency.key},
           to: {type: 'fiat', name: 'USD'},
-          value: event.message.d.cr.p,
+          value: event.message.d.p,
         },
         { root: true }
       )
